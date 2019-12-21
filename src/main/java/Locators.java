@@ -85,7 +85,6 @@ public class Locators {
     public static final By NEXT_PAGE_PAGINATION = By.xpath("//a[contains(text(),'>')]");
     public static final By PREVIOUS_PAGE_PAGINATION = By.xpath("//a[contains(text(),'<')]");
 
-
     public static final By DROP_DOWN_LIST_AGE_MIN = By.cssSelector("select#age_min");
     public static final By DROP_DOWN_LIST_AGE_MAX = By.cssSelector("select#age_max");
     public static final By BUTTON_MAIN_SEARCH = By.cssSelector("input#main_search_button_user_advanced");
@@ -95,10 +94,15 @@ public class Locators {
 //    ________________________________
 
     public static final By LINK_MEDIA = By.cssSelector("a[href='https://romanceabroad.com/media/index']");
+    public static final By DROP_DOWN_LIST_MEDIA_SORTER = By.xpath("//span[@id='gallery_media_sorter']//select[@class='form-control']");
+    public static final By PHOTO_SORTER_ARROW_UP = By.cssSelector(".fa-arrow-up");
+    public static final By PHOTO_SORTER_ARROW_DOWN = By.cssSelector(".fa-arrow-down");
     public static final By LINK_ALL = By.cssSelector("a[href='https://romanceabroad.com/media/all']");
     public static final By LINK_PHOTO = By.cssSelector("a[href='https://romanceabroad.com/media/photo']");
     public static final By LINK_VIDEO = By.cssSelector("a[href='https://romanceabroad.com/media/video']");
     public static final By LINK_ALBUMS = By.cssSelector("a[href='https://romanceabroad.com/media/albums']");
+    public static final By DROP_DOWN_LIST_ALBUMS_SORTER = By.xpath("//select[@id='album_id']");
+
 
 //    ________________________________
 //    Gifts Page
@@ -124,9 +128,9 @@ public class Locators {
 //    ________________________________
     public static final By LINK_SIGN_IN = By.cssSelector("li.nav-item>a[href='https://romanceabroad.com/users/login_form']");
     public static final By HEADER_LOGIN = By.xpath("//h1[contains(text(),'Login')]");
-//    public static final By TEXT_FIELD_SIGNIN_EMAIL = By.cssSelector("div.col-xs-8>input#email");
-    public static final By TEXT_FIELD_SIGNIN_EMAIL = By.cssSelector("div.col-xs-8>input[name='email']");
-    public static final By TEXT_FIELD_SIGNIN_PASSWORD = By.cssSelector("div.col-xs-8>input#password");
+    public static final By TEXT_FIELD_SIGNIN_EMAIL = By.cssSelector("input[name='email']");
+    public static final By ERROR_MESSAGE_LOGIN_TEXT = By.xpath("//div[@class='error alert-danger alert-warning_pop_']");
+    public static final By TEXT_FIELD_SIGNIN_PASSWORD = By.cssSelector("input[name='password']");
     public static final By LINK_FORGOT_PASSWORD = By.xpath("//a[contains(text(),'Forgot password?')]");
     public static final By BUTTON_SIGN_IN = By.cssSelector("button[name='logbtn']");
 

@@ -3,7 +3,7 @@ public class Data {
     // Registration data
     public static final String email = "11@gmail.com";
     public static final String password = "11@gmail.com";
-    public static final String username = "gogu8765";
+    public static final String username = "gogu";
     public static final String phone = "9876543210";
 
     public static final String expectedUrlHome = "https://romanceabroad.com/#";
@@ -36,9 +36,9 @@ public class Data {
     public static final String expectedLinkTextBlog = "BLOG";
 
     public static final String expectedLinkTextSignIn = "SIGN IN";
+    public static final String expectedUrlErrorSignIn = "https://romanceabroad.com/users/login_form";
+    public static final String expectedSignInErrorAlert = "Login or password are incorrect, please try again";
 
-    public static final String expectedUrlRegistration = "";
-    public static final String expectedPageTitleRegistration = "The Best Free Ukrainian Dating Site| Romanceabroad.Com";
     public static final String expectedLinkTextRegistration = "JOIN FOR FREE NOW";
 
     public static final String expectedLinkTextRequestTourInfoButton = "REQUEST TOUR INFO";

@@ -9,6 +9,18 @@ import org.testng.Assert;
 import java.util.List;
 
 public class MainPage extends BaseActions{
+    String currentUrlHowWeWork;
+    String currentPageTitleHowWeWork;
+    String currentUrlSearch;
+    String currentPageTitleSearch;
+    String currentUrlMedia;
+    String currentPageTitleMedia;
+    String currentUrlGifts;
+    String currentPageTitleGifts;
+    String currentUrlTour;
+    String currentPageTitleTour;
+    String currentUrlBlog;
+    String currentPageTitleBlog;
     String currentLinkTextHowWeWork;
     String currentLinkTextSearch;
     String currentLinkTextMedia;
@@ -16,14 +28,17 @@ public class MainPage extends BaseActions{
     String currentLinkTextTour;
     String currentLinkTextBlog;
     String currentLinkTextSignIn;
-    boolean selectedCheckbox;
+    String currentLinkTextJoinButton;
+    boolean checkboxConfirmation;
     String currentLinkTextRequestTourInfoButton;
+    String actualTitle;
+
 
     public MainPage(WebDriver driver, WebDriverWait wait){
         super(driver, wait);
     }
     // RED HEART HEADER
-    public void checkHeartRomanceAbroadHeader(){
+    public void verifyHeartRomanceAbroadHeader(){
         System.out.println("--- Verifying 'RED HEART HEADER' BUTTON ---");
         WebElement header = driver.findElement(Locators.HEART_ROMANCE_ABROAD);
         boolean headerIsDisplayed = header.isDisplayed();
@@ -34,11 +49,98 @@ public class MainPage extends BaseActions{
             System.out.println("Header is displayed: " + headerIsDisplayed);
         }
     }
+    // DISCOUNT ALERT --> 'BOOK NOW'
+    public void clickLinkBookNow(){
+        System.out.println("--- Clicking 'BOOK NOW' LINK ---");
+        wait.until(ExpectedConditions.elementToBeClickable(Locators.DISCOUNT_ALERT));
+        WebElement bookNow = driver.findElement(Locators.DISCOUNT_ALERT);
+        boolean bookNowIsDisplayed = bookNow.isDisplayed();
+        if (bookNowIsDisplayed){
+            System.out.println("Header is displayed: " + bookNowIsDisplayed);
+            bookNow.click();
+        }
+        else {
+            System.out.println("Header is displayed: " + bookNowIsDisplayed);
+        }
+    }
+
+    public String verifyTitleBookNow(){
+        System.out.println("--- Verifying 'BOOK NOW' LINK ---");
+        actualTitle = driver.findElement(By.xpath("//h1")).getText();
+        System.out.println("BookNow's actual title is: " + actualTitle);
+        driver.navigate().to(Data.MAIN_URL);
+        return actualTitle;
+    }
+
+    public void testLinksOnMainPage(){
+        driver.get(Data.MAIN_URL);
+        checkLinksOnWebPage("//a", "href");
+        checkLinksOnWebPage("//img", "src");
+    }
+
+    public void clickAllNavBarTabs(){
+        System.out.println("--- Verifying Navigation Bar Tabs ---");
+        wait.until(ExpectedConditions.elementToBeClickable(Locators.MAIN_PAGE_NAV_BAR_TABS));
+        List<WebElement> main_nav_bar_tabs = driver.findElements(Locators.MAIN_PAGE_NAV_BAR_TABS);
+        System.out.println(main_nav_bar_tabs.size());
+        for (int i = 0; i < main_nav_bar_tabs.size(); i++) {
+            System.out.print(i+1 + ". ");
+            String info = main_nav_bar_tabs.get(i).getText();
+            System.out.println(info);
+            main_nav_bar_tabs.get(i).click();
+            if (info.contains("WORK")){
+                currentPageTitleHowWeWork = driver.getTitle();
+                currentUrlHowWeWork = driver.getCurrentUrl();
+                Assert.assertEquals(currentPageTitleHowWeWork,Data.expectedPageTitleHowWeWork);
+                Assert.assertEquals(currentUrlHowWeWork, Data.expectedUrlHowWeWork);
+            }
+            if (info.contains("PRETTY WOMEN")){
+                currentPageTitleSearch = driver.getTitle();
+                currentUrlSearch = driver.getCurrentUrl();
+                Assert.assertEquals(currentPageTitleSearch, Data.expectedPageTitleSearch);
+                Assert.assertEquals(currentUrlSearch, Data.expectedUrlSearch);
+                driver.findElement(Locators.GALLERY_PICTURE_SEARCH).isDisplayed();
+            }
+            if (info.contains("PHOTOS")){
+                currentPageTitleMedia = driver.getTitle();
+                currentUrlMedia = driver.getCurrentUrl();
+                Assert.assertEquals(currentPageTitleMedia, Data.expectedPageTitleMedia);
+                Assert.assertEquals(currentUrlMedia, Data.expectedUrlMedia);
+                driver.findElement(Locators.GALLERY_PICTURE_MEDIA).isDisplayed();
+            }
+            if (info.contains("GIFTS")){
+                currentPageTitleGifts = driver.getTitle();
+                currentUrlGifts = driver.getCurrentUrl();
+                Assert.assertEquals(currentPageTitleGifts, Data.expectedPageTitleGifts);
+                Assert.assertEquals(currentUrlGifts, Data.expectedUrlGifts);
+                driver.findElement(Locators.GALLERY_PICTURE_GIFTS).isDisplayed();
+            }
+            if (info.contains("TOUR")){
+                currentPageTitleTour = driver.getTitle();
+                currentUrlTour = driver.getCurrentUrl();
+                Assert.assertEquals(currentPageTitleTour, Data.expectedPageTitleTour);
+                Assert.assertEquals(currentUrlTour, Data.expectedUrlTour);
+                driver.findElement(Locators.GALLERY_PICTURE_TOUR).isDisplayed();
+            }
+            if (info.contains("BLOG")){
+                currentPageTitleBlog = driver.getTitle();
+                currentUrlBlog = driver.getCurrentUrl();
+                Assert.assertEquals(currentPageTitleBlog, Data.expectedPageTitleBlog);
+                Assert.assertEquals(currentUrlBlog, Data.expectedUrlBlog);
+                driver.findElement(Locators.BLOG_TITLE).isDisplayed();
+            }if (info.contains("SIGN IN")){
+                driver.findElement(Locators.SIGNIN_TITLE).isDisplayed();
+            }
+            driver.get(Data.MAIN_URL);
+            main_nav_bar_tabs = driver.findElements(Locators.MAIN_PAGE_NAV_BAR_TABS);
+        }
+    }
 
     // 'HOW WE WORK' link
-    public void clickHowWeWorkLink(){
+    public String verifyLinkHowWeWork(){
         // Verifying 'HOW WE WORK' page LinkText
         System.out.println("--- Verifying 'HOW WE WORK' page LinkText ---");
+        wait.until(ExpectedConditions.elementToBeClickable(Locators.LINK_HOW_WE_WORK));
         WebElement howWeWorkLink = driver.findElement(Locators.LINK_HOW_WE_WORK);
         currentLinkTextHowWeWork = howWeWorkLink.getText();
         System.out.println("Current LinkText of 'HowWeWork' page is:  '" + currentLinkTextHowWeWork + "'");
@@ -49,14 +151,21 @@ public class MainPage extends BaseActions{
         else {
             System.out.println("Current LinkText of 'HowWeWork' page is NOT equal to expected LinkText of 'HowWeWork' page");
         }
-        Assert.assertEquals(currentLinkTextHowWeWork, Data.expectedLinkTextHowWeWork);
+        return currentLinkTextHowWeWork;
+    }
+
+    public void clickLinkHowWeWork(){
         // Click "HOW WE WORK" link
+        System.out.println("--- Clicking 'HOW WE WORK' link ---");
+        wait.until(ExpectedConditions.elementToBeClickable(Locators.LINK_HOW_WE_WORK));
+        WebElement howWeWorkLink = driver.findElement(Locators.LINK_HOW_WE_WORK);
         howWeWorkLink.click();
     }
 
-    public void clickSearchLink(){
+    public String verifyLinkSearch(){
         // Verify 'SEARCH' page LinkText
         System.out.println("--- Verifying 'SEARCH' page LinkText ---");
+        wait.until(ExpectedConditions.elementToBeClickable(Locators.LINK_SEARCH));
         WebElement searchLink = driver.findElement(Locators.LINK_SEARCH); // "PRETTY WOMEN"
         currentLinkTextSearch = searchLink.getText();
         System.out.println("Current LinkText of 'Search' page is:  '" + currentLinkTextSearch + "'");
@@ -67,15 +176,22 @@ public class MainPage extends BaseActions{
         else {
             System.out.println("Current LinkText of 'Search' page is NOT equal to expected LinkText of 'Search' page");
         }
-        Assert.assertEquals(currentLinkTextSearch, Data.expectedLinkTextSearch);
+        return currentLinkTextSearch;
+    }
+
+    public void clickLinkSearch(){
         // Click "PRETTY WOMEN" link
+        System.out.println("--- Clicking 'PRETTY WOMEN' link ---");
+        wait.until(ExpectedConditions.elementToBeClickable(Locators.LINK_SEARCH));
+        WebElement searchLink = driver.findElement(Locators.LINK_SEARCH); // "PRETTY WOMEN"
         searchLink.click();
     }
 
-    public void clickPhotosLink(){
-        System.out.println("             *** testFotosPage ***");
+    public String verifyLinkPhotos(){
+        System.out.println("             *** testPhotosPage ***");
         // Verify 'PHOTOS' page LinkText
         System.out.println("--- Verifying 'PHOTOS' page LinkText ---");
+        wait.until(ExpectedConditions.elementToBeClickable(Locators.LINK_MEDIA));
         WebElement photosLink = driver.findElement(Locators.LINK_MEDIA);
         currentLinkTextMedia = photosLink.getText();
         System.out.println("Current LinkText of 'PHOTOS' page is:  '" + currentLinkTextMedia + "'");
@@ -86,15 +202,22 @@ public class MainPage extends BaseActions{
         else {
             System.out.println("Current LinkText of 'PHOTOS' page is NOT equal to expected LinkText of 'PHOTOS' page");
         }
-        Assert.assertEquals(currentLinkTextMedia, Data.expectedLinkTextMedia);
+        return currentLinkTextMedia;
+    }
+
+    public void clickLinkPhotos(){
         // Click "PHOTOS" link
+        wait.until(ExpectedConditions.elementToBeClickable(Locators.LINK_MEDIA));
+        System.out.println("--- Clicking 'PHOTOS' link ---");
+        WebElement photosLink = driver.findElement(Locators.LINK_MEDIA);
         photosLink.click();
     }
 
-    public void clickGiftsLink(){
+    public String verifyLinkGifts(){
         System.out.println("             *** testGiftsPage ***");
         // Verify 'GIFTS' page LinkText
         System.out.println("--- Verifying 'GIFTS' page LinkText ---");
+        wait.until(ExpectedConditions.elementToBeClickable(Locators.LINK_GIFT));
         WebElement giftsLink = driver.findElement(Locators.LINK_GIFT);
         currentLinkTextGifts = giftsLink.getText();
         System.out.println("Current LinkText of 'GIFTS' page is:  '" + currentLinkTextGifts + "'");
@@ -105,15 +228,22 @@ public class MainPage extends BaseActions{
         else {
             System.out.println("Current LinkText of 'GIFTS' page is NOT equal to expected LinkText of 'GIFTS' page");
         }
-        Assert.assertEquals(currentLinkTextGifts, Data.expectedLinkTextGifts);
+        return currentLinkTextGifts;
+    }
+
+    public void clickGiftsLink(){
         // Click "GIFTS" link
+        wait.until(ExpectedConditions.elementToBeClickable(Locators.LINK_GIFT));
+        System.out.println("--- Clicking 'GIFTS' link ---");
+        WebElement giftsLink = driver.findElement(Locators.LINK_GIFT);
         giftsLink.click();//
     }
 
-    public void clickTourToUkraineLink(){
+    public String verifyLinkTourToUkraine(){
         System.out.println("             *** test'TOUR TO UKRAINE' Page ***");
         // Verify 'TOUR TO UKRAINE' page LinkText
         System.out.println("--- Verifying 'TOUR TO UKRAINE' page LinkText ---");
+        wait.until(ExpectedConditions.elementToBeClickable(Locators.LINK_TOUR));
         WebElement tourLink = driver.findElement(Locators.LINK_TOUR);
         currentLinkTextTour = tourLink.getText();
         System.out.println("Current LinkText of 'TOUR TO UKRAINE' page is:  '" + currentLinkTextTour + "'");
@@ -124,14 +254,21 @@ public class MainPage extends BaseActions{
         else {
             System.out.println("Current LinkText of 'TOUR TO UKRAINE' page is NOT equal to expected LinkText of 'TOUR TO UKRAINE' page");
         }
-        Assert.assertEquals(currentLinkTextTour, Data.expectedLinkTextTour);
+        return currentLinkTextTour;
+    }
+
+    public void clickLinkTourToUkraine(){
         // Click "TOUR TO UKRAINE" link
+        wait.until(ExpectedConditions.elementToBeClickable(Locators.LINK_TOUR));
+        System.out.println("--- Clicking 'OUR TO UKRAINE' link ---");
+        WebElement tourLink = driver.findElement(Locators.LINK_TOUR);
         tourLink.click();
     }
 
-    public void clickBlogLink(){
+    public String verifyLinkBlog(){
         // Verify 'BLOG' page LinkText
-        System.out.println("--- Verifying 'TOUR TO UKRAINE' page LinkText ---");
+        System.out.println("--- Verifying 'BLOG' page LinkText ---");
+        wait.until(ExpectedConditions.elementToBeClickable(Locators.LINK_BLOG));
         WebElement blogLink = driver.findElement(Locators.LINK_BLOG);
         currentLinkTextBlog = blogLink.getText();
         System.out.println("Current LinkText of 'BLOG' page is:  '" + currentLinkTextBlog + "'");
@@ -142,16 +279,22 @@ public class MainPage extends BaseActions{
         else {
             System.out.println("Current LinkText of 'BLOG' page is NOT equal to expected LinkText of 'BLOG' page");
         }
-        Assert.assertEquals(currentLinkTextBlog, Data.expectedLinkTextBlog);
-        // Click "BLOG" link
-        blogLink.click();//
+        return currentLinkTextBlog;
     }
 
-    public void clickSignInLink(){
+    public void clickLinkBlog(){
+        // Click "BLOG" link
+        wait.until(ExpectedConditions.elementToBeClickable(Locators.LINK_BLOG));
+        System.out.println("--- Clicking 'BLOG' link ---");
+        WebElement blogLink = driver.findElement(Locators.LINK_BLOG);
+        blogLink.click();
+    }
+
+    public String verifyLinkSignIn(){
         // Verify 'SIGN IN' page LinkText
         System.out.println("--- Verifying 'SIGN IN' page LinkText ---");
+        wait.until(ExpectedConditions.elementToBeClickable(Locators.LINK_SIGN_IN));
         WebElement signInLink = driver.findElement(Locators.LINK_SIGN_IN);
-
         currentLinkTextSignIn = signInLink.getText();
         System.out.println("Current LinkText of 'SIGN IN' link is: '" + currentLinkTextSignIn + "'");
         System.out.println("Expected LinkText of 'SIGN IN' link is: '" + Data.expectedLinkTextSignIn + "'");
@@ -161,17 +304,39 @@ public class MainPage extends BaseActions{
         else {
             System.out.println("Current LinkText of 'SIGN IN' link is NOT equal to expected LinkText of 'SIGN IN' link");
         }
-        Assert.assertEquals(currentLinkTextSignIn, Data.expectedLinkTextSignIn);
+        return currentLinkTextSignIn;
+    }
+
+    public void clickLinkSignIn(){
         // Click the 'SIGN IN' link
+        wait.until(ExpectedConditions.elementToBeClickable(Locators.LINK_SIGN_IN));
+        WebElement signInLink = driver.findElement(Locators.LINK_SIGN_IN);
         signInLink.click();
     }
 
     // 'JOIN FOR FREE NOW' Button
 
+    public String verifyLinkJoinButton(){
+        // Verify 'JOIN FOR FREE NOW' button LinkText
+        System.out.println("--- Verifying 'JOIN FOR FREE NOW' button LinkText ---");
+        WebElement registrationButton = driver.findElement(Locators.BUTTON_REGISTRATION); // 'JOIN FOR FREE NOW' button
+        currentLinkTextJoinButton = registrationButton.getText();
+        System.out.println("Current LinkText of 'JOIN FOR FREE NOW' button is:  '" + currentLinkTextJoinButton + "'");
+        System.out.println("Expected LinkText of 'JOIN FOR FREE NOW' button is: '" + Data.expectedLinkTextRegistration + "'");
+        if (currentLinkTextJoinButton.equals(Data.expectedLinkTextRegistration)){
+            System.out.println("Current LinkText of 'JOIN FOR FREE NOW' button is equal to expected LinkText of 'JOIN FOR FREE NOW' button");
+        }
+        else {
+            System.out.println("Current LinkText of 'JOIN FOR FREE NOW' button is NOT equal to expected LinkText of 'JOIN FOR FREE NOW' button");
+        }
+        return currentLinkTextJoinButton;
+    }
+
     public void clickJoinButton(){
         // Click the Registration button
         WebElement registrationButton = driver.findElement(Locators.BUTTON_REGISTRATION); // 'JOIN FOR FREE NOW' button
-        registrationButton.click();
+//        registrationButton.click();
+        ajaxClick(registrationButton);
     }
     public void completeFirstPartOfRegistration(){
         //Enter email
@@ -193,7 +358,7 @@ public class MainPage extends BaseActions{
         // Pick a date
         WebElement birtDate = driver.findElement(Locators.DROP_DOWN_DAY); // Date of birth
         birtDate.click();
-        List<WebElement> day_list = driver.findElements(By.xpath("//div[@id='daySelect']//li//a"));
+        List<WebElement> day_list = driver.findElements(Locators.DAY_LIST);
         int day_list_size = day_list.size();
         System.out.println("The size of 'day_list' is: " + day_list_size);
         for (int i = 0; i < day_list_size; i++){
@@ -208,7 +373,7 @@ public class MainPage extends BaseActions{
         // Pick a month
         WebElement birtMonth = driver.findElement(Locators.DROP_DOWN_MONTH); // Month of birth
         birtMonth.click();
-        List<WebElement> month_list = driver.findElements(By.xpath("//div[@id='monthSelect']//li//a"));
+        List<WebElement> month_list = driver.findElements(Locators.MONTH_LIST);
         int month_list_size = month_list.size();
         System.out.println();
         System.out.println("The size of 'month_list' is: " + month_list_size);
@@ -224,7 +389,7 @@ public class MainPage extends BaseActions{
         // Pick a year
         WebElement birtYear = driver.findElement(Locators.DROP_DOWN_YEAR);  // Year of birth
         birtYear.click();
-        List<WebElement> year_list = driver.findElements(By.xpath("//div[@id='yearSelect']//li//a"));
+        List<WebElement> year_list = driver.findElements(Locators.YEAR_LIST);
         int year_list_size = year_list.size();
         System.out.println("The size of 'year_list' is: " + year_list_size);
         for ( int i = 0; i < year_list_size; i++){
@@ -244,12 +409,12 @@ public class MainPage extends BaseActions{
         locationTextField.clear();
         locationTextField.sendKeys("Bellevue, Washington, United States");
         // Click checkbox
-        WebElement checkboxConfirmation = driver.findElement(Locators.CHECK_BOX);
-        selectedCheckbox = checkboxConfirmation.isSelected();
+        WebElement checkBox = driver.findElement(Locators.CHECK_BOX);
+        checkboxConfirmation = checkBox.isSelected();
         System.out.println();
-        System.out.println("Checkbox previously selected: " + selectedCheckbox + " !!!!!!!!");
-        if (!selectedCheckbox){
-            checkboxConfirmation.click();
+        System.out.println("Checkbox previously selected: " + checkboxConfirmation + " !!!!!!!!");
+        if (!checkboxConfirmation){
+            checkBox.click();
             System.out.println("Checkbox had been selected now.");
         }
     }
@@ -270,14 +435,16 @@ public class MainPage extends BaseActions{
         System.out.println("We are in iFrame.");
         WebElement youTubePlayButton = driver.findElement(Locators.BUTTON_YOU_TUBE_PLAY);
         youTubePlayButton.click();
-        timeWait(5000);
-        WebElement youTubeVideoSurface = driver.findElement(By.cssSelector(".video-stream.html5-main-video"));
+        System.out.println("YouTube video playing");
+        javaWaitSec(5);
+        WebElement youTubeVideoSurface = driver.findElement(Locators.YOU_TUBE_VIDEO_SURFACE);
         youTubeVideoSurface.click();
+        System.out.println("YouTube video stoped");
         driver.switchTo().parentFrame();
         System.out.println("We are in back to parentFrame.");
     }
 
-    public void checkRequestTourInfoButton(){
+    public String verifyLinkRequestTourInfoButton(){
         // Verifying 'REQUEST TOUR INFO' Button LinkText
         System.out.println("--- Verifying 'REQUEST TOUR INFO' BUTTON LinkText ---");
         WebElement requestTourInfoButton = driver.findElement(Locators.BUTTON_REQUEST_TOUR_INFO);
@@ -290,15 +457,25 @@ public class MainPage extends BaseActions{
         else {
             System.out.println("Current LinkText of 'REQUEST TOUR INFO' button  is NOT equal to expected LinkText of 'REQUEST TOUR INFO' button ");
         }
-        Assert.assertEquals(currentLinkTextRequestTourInfoButton, Data.expectedLinkTextRequestTourInfoButton);
         boolean requestEnabledConfirm = requestTourInfoButton.isEnabled();
-
         if (requestEnabledConfirm){
             System.out.println("'REQUEST TOUR INFO' button is enabled");
         }
         else System.out.println("'REQUEST TOUR INFO' button is disabled");
+        return currentLinkTextRequestTourInfoButton;
+    }
+
+    public void clickRequestTourInfoButton(){
         // Click 'REQUEST TOUR INFO' button
+        WebElement requestTourInfoButton = driver.findElement(Locators.BUTTON_REQUEST_TOUR_INFO);
 //        requestTourInfoButton.click();
     }
+
+    public void clickJoinTodayLink(){
+        System.out.println("--- Clicking 'JOIN TODAY' LINK ---");
+        WebElement joinTodayLink = driver.findElement(Locators.JOIN_TODAY_LINK);
+        ajaxClick(joinTodayLink);
+    }
+
 
 }

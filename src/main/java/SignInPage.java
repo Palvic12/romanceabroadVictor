@@ -2,7 +2,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
 public class SignInPage extends BaseActions{
     String currentSignInErrorAlert;
@@ -12,9 +11,9 @@ public class SignInPage extends BaseActions{
         super(driver, wait);
     }
 
-    public void completeSignInForm(){
+    public void completeFormSignIn(){
         //Enter email
-        timeWait(1000);
+        javaWaitSec(1);
         WebElement textFieldSignInEmail = driver.findElement(Locators.TEXT_FIELD_SIGNIN_EMAIL);  // Email text field
         wait.until(ExpectedConditions.visibilityOf(textFieldSignInEmail));
         textFieldSignInEmail.click();
@@ -28,7 +27,7 @@ public class SignInPage extends BaseActions{
         signInButton.click();
     }
 
-    public void ckeckErrorSignIn(){
+    public String ckeckErrorSignIn(){
         WebElement signInErrorMessageElement = driver.findElement(Locators.ERROR_MESSAGE_LOGIN_TEXT);
         currentSignInErrorAlert = signInErrorMessageElement.getText();
 
@@ -40,7 +39,7 @@ public class SignInPage extends BaseActions{
         else {
             System.out.println("Current  signInErrorMessage of 'SIGN IN' page is NOT equal to expected signInErrorMessage of 'SIGN IN' page.");
         }
-        Assert.assertEquals(currentSignInErrorAlert, Data.expectedSignInErrorAlert);
+        return currentSignInErrorAlert;
     }
 
 }

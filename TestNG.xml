@@ -1,45 +1,78 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="TestSuite" parallel="none" >
-    <test name="IETestCases">
+    <!--<test name="IETestCases">
         <parameter name="browser" value="ie"/>
         <classes>
-            <class name ="MainPageTests"/>
-            <class name ="RegistrationTests"/>
-            <class name ="HowWeWorkTests"/>
-            <class name ="SearchTests"/>
-            <class name ="MediaTests"/>
-            <class name ="GiftTests"/>
-            <class name ="TourTests"/>
-            <class name ="BlogTests"/>
-            <class name ="SignInTests"/>
+&lt;!&ndash;            <class name ="com.romanceabroad.ui.MainPageTests"/>&ndash;&gt;
+            <class name ="com.romanceabroad.ui.RegistrationTests"/>
+&lt;!&ndash;            <class name ="com.romanceabroad.ui.HowWeWorkTests"/>&ndash;&gt;
+&lt;!&ndash;            <class name ="com.romanceabroad.ui.SearchTests"/>&ndash;&gt;
+&lt;!&ndash;            <class name ="com.romanceabroad.ui.MediaTests"/>&ndash;&gt;
+&lt;!&ndash;            <class name ="com.romanceabroad.ui.GiftTests"/>&ndash;&gt;
+&lt;!&ndash;            <class name ="com.romanceabroad.ui.TourTests"/>&ndash;&gt;
+&lt;!&ndash;            <class name ="com.romanceabroad.ui.BlogTests"/>&ndash;&gt;
+&lt;!&ndash;            <class name ="com.romanceabroad.ui.SignInTests"/>&ndash;&gt;
         </classes>
-    </test>
-    <test name="FirefoxTestCases">
+    </test>-->
+
+    <!--<test name="FirefoxTestCases">
         <parameter name="browser" value="firefox"/>
         <classes>
-            <class name ="MainPageTests"/>
-            <class name ="RegistrationTests"/>
-            <class name ="HowWeWorkTests"/>
-            <class name ="SearchTests"/>
-            <class name ="MediaTests"/>
-            <class name ="GiftTests"/>
-            <class name ="TourTests"/>
-            <class name ="BlogTests"/>
-            <class name ="SignInTests"/>
+&lt;!&ndash;            <class name ="com.romanceabroad.ui.MainPageTests"/>&ndash;&gt;
+            <class name ="com.romanceabroad.ui.RegistrationTests"/>
+&lt;!&ndash;            <class name ="com.romanceabroad.ui.HowWeWorkTests"/>&ndash;&gt;
+&lt;!&ndash;            <class name ="com.romanceabroad.ui.SearchTests"/>&ndash;&gt;
+&lt;!&ndash;            <class name ="com.romanceabroad.ui.MediaTests"/>&ndash;&gt;
+&lt;!&ndash;            <class name ="com.romanceabroad.ui.GiftTests"/>&ndash;&gt;
+&lt;!&ndash;            <class name ="com.romanceabroad.ui.TourTests"/>&ndash;&gt;
+&lt;!&ndash;            <class name ="com.romanceabroad.ui.BlogTests"/>&ndash;&gt;
+&lt;!&ndash;            <class name ="com.romanceabroad.ui.SignInTests"/>&ndash;&gt;
         </classes>
-    </test>
-    <test name="ChromeTestCases">
+    </test>-->
+
+   <!-- <test name="ChromeTestCases">
         <parameter name="browser" value="chrome"/>
+        <groups>
+            <run>
+                <exclude name="ie" />
+                <include name="admin" />
+                <include name="user" />
+            </run>
+        </groups>
         <classes>
-            <class name ="MainPageTests"/>
-            <class name ="RegistrationTests"/>
-            <class name ="HowWeWorkTests"/>
-            <class name ="SearchTests"/>
-            <class name ="MediaTests"/>
-            <class name ="GiftTests"/>
-            <class name ="TourTests"/>
-            <class name ="BlogTests"/>
-            <class name ="SignInTests"/>
+            <class name ="com.romanceabroad.ui.SearchTests">
+                <methods>
+                    <include name=".*TestCase12.*"/>
+                    <include name=".*TestCase11.*"/>
+                    <exclude name=".*TestCase13.*"/>
+                </methods>
+            </class>
+            &lt;!&ndash;            <class name ="com.romanceabroad.ui.RegistrationTests"/>&ndash;&gt;
+            &lt;!&ndash;            <class name ="com.romanceabroad.ui.HowWeWorkTests"/>&ndash;&gt;
+            &lt;!&ndash;            <class name ="com.romanceabroad.ui.SearchTests"/>&ndash;&gt;
+            &lt;!&ndash;            <class name ="com.romanceabroad.ui.MediaTests"/>&ndash;&gt;
+            &lt;!&ndash;            <class name ="com.romanceabroad.ui.GiftTests"/>&ndash;&gt;
+            &lt;!&ndash;            <class name ="com.romanceabroad.ui.TourTests"/>&ndash;&gt;
+            &lt;!&ndash;            <class name ="com.romanceabroad.ui.BlogTests"/>&ndash;&gt;
+            &lt;!&ndash;            <class name ="com.romanceabroad.ui.SignInTests"/>&ndash;&gt;
+        </classes>
+    </test>-->
+
+    <test name="Chrome Test Cases 2">
+        <parameter name="browser" value="chrome"/>
+
+        <classes>
+<!--            <class name ="com.romanceabroad.ui.SearchTests">-->
+<!--                -->
+<!--            </class>-->
+            <class name ="com.romanceabroad.ui.RegistrationTests"/>
+<!--            <class name ="com.romanceabroad.ui.HowWeWorkTests"/>-->
+<!--            <class name ="com.romanceabroad.ui.SearchTests"/>-->
+<!--            <class name ="com.romanceabroad.ui.MediaTests"/>-->
+<!--            <class name ="com.romanceabroad.ui.GiftTests"/>-->
+<!--            <class name ="com.romanceabroad.ui.TourTests"/>-->
+<!--            <class name ="com.romanceabroad.ui.BlogTests"/>-->
+<!--            <class name ="com.romanceabroad.ui.SignInTests"/>-->
         </classes>
     </test>
 </suite>

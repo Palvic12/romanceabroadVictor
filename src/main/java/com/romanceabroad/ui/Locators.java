@@ -1,3 +1,5 @@
+package com.romanceabroad.ui;
+
 import org.openqa.selenium.By;
 
 public class Locators {
@@ -17,10 +19,7 @@ public class Locators {
     public static final By BUTTON_REQUEST_TOUR_INFO = By.cssSelector(".btn.btn-primary.btn-xl.js-scroll-trigger[href='https://romanceabroad.com/REQUEST_TOUR_INFO+Application_Form.doc']");
     public static final By PAGE_TITLE = By.xpath("//title");
     public static final By JOIN_TODAY_LINK = By.xpath("//a[contains(text(),'JOIN TODAY!')]");
-    public static final By DAY_LIST = By.xpath("//div[@id='daySelect']//li//a");
-    public static final By MONTH_LIST = By.xpath("//div[@id='monthSelect']//li//a");
-    public static final By YEAR_LIST = By.xpath("//div[@id='yearSelect']//li//a");
-
+    public static final By H1_TITLE = By.xpath("//h1");
 
 //    ________________________________
 //    HOW WE WORK Page
@@ -38,6 +37,24 @@ public class Locators {
     public static final By MENU_GROUP_LINK_LOGIN = By.cssSelector(".menu-group>a[href='https://romanceabroad.com/users/login_form/']");
     public static final By MENU_GROUP_LINK_NEWS = By.cssSelector(".menu-group>a[href='https://romanceabroad.com/news/']");
     public static final By MENU_GROUP_LINK_POLLS = By.cssSelector(".menu-group>a[href='https://romanceabroad.com/polls/']");       //different link!!!!!!
+                        // MENU_GROUP_LINK_SIGN_UP
+    public static final By USER_REGISTRATION_EMAIL_TEXT_FIELD = By.xpath("//input[@type='text'][@name='email']");
+    public static final By USER_REGISTRATION_USERNAME_TEXT_FIELD = By.xpath("//input[@type='text'][@name='nickname']");
+    public static final By USER_REGISTRATION_PASSWORD_TEXT_FIELD = By.xpath("//input[@type='text'][@name='password']");
+    public static final By USER_REGISTRATION_DROP_DOWN_DAY = By.cssSelector("div#daySelect");
+    public static final By USER_REGISTRATION_DROP_DOWN_MONTH = By.cssSelector("div#monthSelect");
+    public static final By USER_REGISTRATION_DROP_DOWN_YEAR = By.cssSelector("div#yearSelect");
+    public static final By USER_REGISTRATION_DAY_LIST = By.xpath("//div[@id='daySelect']//li//a");
+    public static final By USER_REGISTRATION_MONTH_LIST = By.xpath("//div[@id='monthSelect']//li//a");
+    public static final By USER_REGISTRATION_YEAR_LIST = By.xpath("//div[@id='yearSelect']//li//a");
+    public static final By USER_REGISTRATION_PHONE_TEXT_FIELD = By.xpath("//input[@type='text'][@name='phone']");
+    public static final By USER_REGISTRATION_LOCATION_TEXT_FIELD = By.xpath("//input[@type='text'][@name='region_name']");
+    public static final By USER_REGISTRATION_LOCATION_LIST = By.xpath("//div[@class='dropdown dropdown_location']//ul//li");
+    public static final By USER_REGISTRATION_CHECK_BOX_LATEST_NEWS = By.cssSelector("input#sub1");
+    public static final By USER_REGISTRATION_CHECK_BOX_CONFIRMATION = By.cssSelector("input#confirmation");
+    public static final By USER_REGISTRATION_REGISTER_BUTTON = By.cssSelector("input.btn.btn-primary");
+                        // MENU_GROUP_LINK_LOGIN
+
     public static final By HEADER_LINK_GIFTS_PIX = By.cssSelector("div>a[href='https://romanceabroad.com/store/category-sweets']>i");
     public static final By HEADER_LINK_GIFTS_TXT = By.cssSelector("div>a[href='https://romanceabroad.com/store/category-sweets'][data-item=txt]");
     public static final By HEADER_TOUR_TO_UKRAINE_PIX = By.cssSelector("div>a[href='https://romanceabroad.com/store/sweets/20-tour_to_ukraine']>i");
@@ -105,6 +122,7 @@ public class Locators {
     public static final By DROP_DOWN_LIST_AGE_MIN = By.cssSelector("select#age_min");
     public static final By DROP_DOWN_LIST_AGE_MAX = By.cssSelector("select#age_max");
     public static final By BUTTON_MAIN_SEARCH = By.cssSelector("input#main_search_button_user_advanced");
+    public static final By TEXT_USER_INFO = By.xpath("//div[@class='text-overflow']");
 
 //    ________________________________
 //    Media Page (PHOTOS)
@@ -113,6 +131,7 @@ public class Locators {
     public static final By LINK_MEDIA = By.cssSelector("a[href='https://romanceabroad.com/media/index']");
     public static final By MEDIA_LINKS = By.xpath("//a[@class='b-tabs__text']");
     public static final By DROP_DOWN_LIST_MEDIA_SORTER = By.xpath("//span[@id='gallery_media_sorter']//select[@class='form-control']");
+    public static final By DROP_DOWN_LIST_MEDIA_SORTER_ALBUMS = By.xpath("//div[@class='col-xs-12']//select[@id='album_id']");
     public static final By PHOTO_SORTER_ARROW_UP = By.cssSelector(".fa-arrow-up");
     public static final By PHOTO_SORTER_ARROW_DOWN = By.cssSelector(".fa-arrow-down");
     public static final By GALLERY_PICTURE_MEDIA = By.xpath("//a[@class='g-pic-border g-rounded g-users-gallery__photo-img']");
@@ -127,6 +146,8 @@ public class Locators {
 //    Gifts Page
 //    ________________________________
 
+    public static final By TEXT_FIELD_SEARCH_GIFT = By.xpath("//input[@type='text'][@name='search_product']");
+    public static final By BUTTON_SEARCH_GIFT = By.xpath("//button[@id='search_friend'][@type='submit']");
     public static final By LINK_GIFT = By.cssSelector("a[href='https://romanceabroad.com/store/category-sweets']");
     public static final By BESTSELLERS_LINKS = By.xpath("//div[@class='info']//a");
     public static final By GALLERY_PICTURE_GIFTS = By.xpath("//a[@class='g-pic-border g-rounded g-users-gallery__photo-img']");
@@ -146,7 +167,9 @@ public class Locators {
 
     public static final By LINK_BLOG = By.cssSelector("a[href='https://romanceabroad.com/content/view/blog']");
     public static final By BLOG_TITLE = By.xpath("//h1[contains(text(),'Blog')]");
-    public static final By ALL_LINKS = By.cssSelector("div.info-content-block.wysiwyg>ul>li>a");
+//    public static final By BLOG_ALL_LINKS = By.cssSelector("div.info-content-block.wysiwyg>ul>li>a");
+//    public static final By BLOG_ALL_LINKS = By.xpath("//ul[@class='nav nav-pills nav-stacked content-pages-tree']//a");
+    public static final By BLOG_ALL_LINKS = By.cssSelector("li>div.info-menu-inner>a");
 
 //    ________________________________
 //   Sign In Page
@@ -166,16 +189,21 @@ public class Locators {
     public static final By BUTTON_REGISTRATION = By.xpath("//button[@id='show-registration-block']");
     public static final By HEADER_GET_STARTED = By.xpath("//body[@id='page-top']/div[@id='pjaxcontainer']/header[@class='masthead text-center text-white d-flex']/div[@class='container my-auto']/div[@class='row']/div[@class='col-lg-8 mx-auto']/div[@class='registration-block']/form/div[@class='main-block-pages']/div[@class='pages-wraper']/div[@id='second-registration-page']/div[1]/div[2]/div[1]");
 
-    public static final By BUTTON_NEXT = By.xpath("//button[@data-action='next-page'][text()='Next']"); //(after Password)
+    public static final By BUTTON_NEXT_FIRST_PART = By.xpath("//button[@data-action='next-page'][text()='Next']"); //(after Password)
     public static final By BUTTON_NEXT2 = By.cssSelector("button[data-action='update-profile']"); //(after check box)
 
+    public static final By TOOLTIP_ERROR_MESSAGE = By.xpath("//div[@class='tooltip']");
     public static final By TEXT_FIELD_EMAIL = By.cssSelector("input#email");
     public static final By TEXT_FIELD_PASSWORD = By.cssSelector("input#password");
     public static final By TEXT_FIELD_USERNAME = By.cssSelector("input#nickname.form-control");
     public static final By DROP_DOWN_DAY = By.cssSelector("div#daySelect");
     public static final By DROP_DOWN_MONTH = By.cssSelector("div#monthSelect");
     public static final By DROP_DOWN_YEAR = By.cssSelector("div#yearSelect");
-    public static final By TEXT_FIELD_LOCATION = By.cssSelector("input[name='region_name']");
+    public static final By DAY_LIST = By.xpath("//div[@id='daySelect']//li//a");
+    public static final By MONTH_LIST = By.xpath("//div[@id='monthSelect']//li//a");
+    public static final By YEAR_LIST = By.xpath("//div[@id='yearSelect']//li//a");
     public static final By TEXT_FIELD_PHONE = By.cssSelector("input[name='data[phone]']");
-    public static final By CHECK_BOX = By.cssSelector("input#confirmation");
+    public static final By TEXT_FIELD_LOCATION = By.cssSelector("input[name='region_name']");
+    public static final By LOCATION_LIST = By.xpath("//div[@class='dropdown dropdown_location']//ul//li");
+    public static final By CHECK_BOX_CONFIRMATION = By.cssSelector("input#confirmation");
 }

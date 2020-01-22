@@ -1,5 +1,7 @@
-import org.testng.Assert;
+package com.romanceabroad.ui;
+
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 public class TourTests extends BaseUI {
     String linkTourToUkraine;
@@ -8,14 +10,16 @@ public class TourTests extends BaseUI {
 
     @Test
     public  void testTourPage(){
+        SoftAssert softAssert = new SoftAssert();
         linkTourToUkraine = mainPage.verifyLinkTourToUkraine();
-        Assert.assertEquals(linkTourToUkraine, Data.expectedLinkTextTour);
+        softAssert.assertEquals(linkTourToUkraine, Data.expectedLinkTextTour, "Wrong Link Text!");
         mainPage.clickLinkTourToUkraine();
         titleTourToUkraine = tourPage.verifyTitleTourToUkraine();
-        Assert.assertEquals(titleTourToUkraine, Data.expectedPageTitleTour);
+        softAssert.assertEquals(titleTourToUkraine, Data.expectedPageTitleTour, "Wrong title!");
         urlTourToUkraine = tourPage.verifyUrlTourToUkraine();
 //        tourPage.testLinksOnTourToUkrainePage();
-        Assert.assertEquals(urlTourToUkraine, Data.expectedUrlTour);
+        softAssert.assertEquals(urlTourToUkraine, Data.expectedUrlTour, "Wrong URL!");
         tourPage.verifyRelatedItems();
+        softAssert.assertAll();
     }
 }

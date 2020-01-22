@@ -1,6 +1,9 @@
+package com.romanceabroad.ui;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -52,9 +55,9 @@ public class GiftPage extends BaseActions{
     }
 
     public void checkBestsellersLinks(){
-        System.out.println("--- Clicking estsellers' links on 'GIFTS' page ---");
+        System.out.println("--- Clicking bestsellers' links on 'GIFTS' page ---");
         List<WebElement> links = driver.findElements(Locators.BESTSELLERS_LINKS);
-        System.out.println(links.size());
+        System.out.println("Number of bestsellers' links: " + links.size());
         for (int i = 0; i < links.size(); i++) {
             String info = links.get(i).getText();
             System.out.println(i + 1 + ". " + info);
@@ -82,6 +85,13 @@ public class GiftPage extends BaseActions{
             driver.get(Data.GIFTS_PAGE);
             links = driver.findElements(Locators.BESTSELLERS_LINKS);
         }
+    }
+
+    public void searchGifts(String gift){
+        System.out.println("--- Searching for gifts on 'GIFTS' page ---");
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(Locators.TEXT_FIELD_SEARCH_GIFT)));
+        driver.findElement(Locators.TEXT_FIELD_SEARCH_GIFT).sendKeys(gift);
+        driver.findElement(Locators.BUTTON_SEARCH_GIFT).click();
     }
 
 }

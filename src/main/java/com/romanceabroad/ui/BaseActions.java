@@ -1,3 +1,5 @@
+package com.romanceabroad.ui;
+
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -26,6 +28,7 @@ public class BaseActions {
     public void selectByIndex(WebElement element, int index){
         Select select = new Select(element);
         select.selectByIndex(index);
+        System.out.println(select.getFirstSelectedOption().getText());
     }
 
     public void selectByText(WebElement element, String text){
@@ -169,22 +172,53 @@ public class BaseActions {
         }
     }
 
+    // Scrolls
+    public void scrollToBottomOfPage(){
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
+    }
+    public void ajaxScroll(WebElement element){
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+    public void ajaxScroll(By by, int index) {
+        wait.until(ExpectedConditions.presenceOfElementLocated(by));
+        ajaxScroll(driver.findElements(by).get(index));
+    }
     public void ajaxScrollUp(){
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,-250)", "");
     }
 
-    public void scrollToBottomOfPage(){
-        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
+
+
+    public void clickValueOfLists(By locator, String text){
+        List<WebElement> elements = driver.findElements(locator);
+        for (int i = 0; i < elements.size(); i++) {
+            WebElement elementOfList = elements.get(i);
+            String value = elementOfList.getText();
+            if (value.contains(text)){
+                elementOfList.click();
+            }
+        }
     }
 
+    public String getAnyTitle(){
+        String title = driver.findElement(Locators.H1_TITLE).getText();
+        return title;
+    }
 
+    public void getDropDownListByIndex(By locator, int indexValue, int indexLocator){
+        Select select = new Select(driver.findElements(locator).get(indexLocator));
+        select.selectByIndex(indexValue);
+    }
+    public void getDropDownListByText(WebElement element, String text){
+        Select select = new Select(element);
+        select.selectByVisibleText(text);
+    }
 
-
-
-
-
-
+    public void getDropDownListByValue(WebElement element, String value){
+        Select select = new Select(element);
+        select.selectByValue(value);
+    }
 
 
 

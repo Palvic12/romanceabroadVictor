@@ -1,10 +1,11 @@
+package com.romanceabroad.ui;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
 import java.util.List;
 
@@ -78,63 +79,12 @@ public class MainPage extends BaseActions{
         checkLinksOnWebPage("//img", "src");
     }
 
-    public void clickAllNavBarTabs(){
-        System.out.println("--- Verifying Navigation Bar Tabs ---");
-        wait.until(ExpectedConditions.elementToBeClickable(Locators.MAIN_PAGE_NAV_BAR_TABS));
-        List<WebElement> main_nav_bar_tabs = driver.findElements(Locators.MAIN_PAGE_NAV_BAR_TABS);
-        System.out.println(main_nav_bar_tabs.size());
-        for (int i = 0; i < main_nav_bar_tabs.size(); i++) {
-            System.out.print(i+1 + ". ");
-            String info = main_nav_bar_tabs.get(i).getText();
-            System.out.println(info);
-            main_nav_bar_tabs.get(i).click();
-            if (info.contains("WORK")){
-                currentPageTitleHowWeWork = driver.getTitle();
-                currentUrlHowWeWork = driver.getCurrentUrl();
-                Assert.assertEquals(currentPageTitleHowWeWork,Data.expectedPageTitleHowWeWork);
-                Assert.assertEquals(currentUrlHowWeWork, Data.expectedUrlHowWeWork);
-            }
-            if (info.contains("PRETTY WOMEN")){
-                currentPageTitleSearch = driver.getTitle();
-                currentUrlSearch = driver.getCurrentUrl();
-                Assert.assertEquals(currentPageTitleSearch, Data.expectedPageTitleSearch);
-                Assert.assertEquals(currentUrlSearch, Data.expectedUrlSearch);
-                driver.findElement(Locators.GALLERY_PICTURE_SEARCH).isDisplayed();
-            }
-            if (info.contains("PHOTOS")){
-                currentPageTitleMedia = driver.getTitle();
-                currentUrlMedia = driver.getCurrentUrl();
-                Assert.assertEquals(currentPageTitleMedia, Data.expectedPageTitleMedia);
-                Assert.assertEquals(currentUrlMedia, Data.expectedUrlMedia);
-                driver.findElement(Locators.GALLERY_PICTURE_MEDIA).isDisplayed();
-            }
-            if (info.contains("GIFTS")){
-                currentPageTitleGifts = driver.getTitle();
-                currentUrlGifts = driver.getCurrentUrl();
-                Assert.assertEquals(currentPageTitleGifts, Data.expectedPageTitleGifts);
-                Assert.assertEquals(currentUrlGifts, Data.expectedUrlGifts);
-                driver.findElement(Locators.GALLERY_PICTURE_GIFTS).isDisplayed();
-            }
-            if (info.contains("TOUR")){
-                currentPageTitleTour = driver.getTitle();
-                currentUrlTour = driver.getCurrentUrl();
-                Assert.assertEquals(currentPageTitleTour, Data.expectedPageTitleTour);
-                Assert.assertEquals(currentUrlTour, Data.expectedUrlTour);
-                driver.findElement(Locators.GALLERY_PICTURE_TOUR).isDisplayed();
-            }
-            if (info.contains("BLOG")){
-                currentPageTitleBlog = driver.getTitle();
-                currentUrlBlog = driver.getCurrentUrl();
-                Assert.assertEquals(currentPageTitleBlog, Data.expectedPageTitleBlog);
-                Assert.assertEquals(currentUrlBlog, Data.expectedUrlBlog);
-                driver.findElement(Locators.BLOG_TITLE).isDisplayed();
-            }if (info.contains("SIGN IN")){
-                driver.findElement(Locators.SIGNIN_TITLE).isDisplayed();
-            }
-            driver.get(Data.MAIN_URL);
-            main_nav_bar_tabs = driver.findElements(Locators.MAIN_PAGE_NAV_BAR_TABS);
-        }
+    public List<WebElement> collectAllNavBarTabs(){
+        List<WebElement> links = driver.findElements(Locators.MAIN_PAGE_NAV_BAR_TABS);
+        return links;
     }
+
+
 
     // 'HOW WE WORK' link
     public String verifyLinkHowWeWork(){
@@ -231,11 +181,11 @@ public class MainPage extends BaseActions{
         return currentLinkTextGifts;
     }
 
-    public void clickGiftsLink(){
+    public void clickLinkGifts(){
         // Click "GIFTS" link
-        wait.until(ExpectedConditions.elementToBeClickable(Locators.LINK_GIFT));
-        System.out.println("--- Clicking 'GIFTS' link ---");
         WebElement giftsLink = driver.findElement(Locators.LINK_GIFT);
+        wait.until(ExpectedConditions.elementToBeClickable(giftsLink));
+        System.out.println("--- Clicking 'GIFTS' link ---");
         giftsLink.click();//
     }
 
@@ -338,88 +288,55 @@ public class MainPage extends BaseActions{
 //        registrationButton.click();
         ajaxClick(registrationButton);
     }
-    public void completeFirstPartOfRegistration(){
+
+    public void completeFirstPartOfRegistration(String email, String password){
         //Enter email
-        WebElement emailTextField = driver.findElement(Locators.TEXT_FIELD_EMAIL); // Email text field
-        wait.until(ExpectedConditions.visibilityOf(emailTextField));
-        emailTextField.sendKeys(Data.email);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(Locators.TEXT_FIELD_EMAIL)));
+        driver.findElement(Locators.TEXT_FIELD_EMAIL).sendKeys(email); // Email text field
+
         //Enter password
-        WebElement passwordTextField = driver.findElement(Locators.TEXT_FIELD_PASSWORD); // Password text field
-        wait.until(ExpectedConditions.elementToBeClickable(passwordTextField));
-        passwordTextField.sendKeys(Data.password);
-        // Click NEXT button
-        WebElement nextButton = driver.findElement(Locators.BUTTON_NEXT); //NEXT button (after Password)
-        nextButton.click();
-    }
-    public void completeSecondPartOfRegistration(){
-        // Enter username
-        WebElement usernameTextField = driver.findElement(Locators.TEXT_FIELD_USERNAME); // Username text field
-        usernameTextField.sendKeys(generateNewNumber(Data.username,10));
-        // Pick a date
-        WebElement birtDate = driver.findElement(Locators.DROP_DOWN_DAY); // Date of birth
-        birtDate.click();
-        List<WebElement> day_list = driver.findElements(Locators.DAY_LIST);
-        int day_list_size = day_list.size();
-        System.out.println("The size of 'day_list' is: " + day_list_size);
-        for (int i = 0; i < day_list_size; i++){
-            System.out.print(day_list.get(i).getText() + " ");
-        }
-        for (int i = 0; i < day_list_size; i++){
-            if (day_list.get(i).getText().contains("18")){ // Enter the date
-                day_list.get(i).click();
-                break;
-            }
-        }
-        // Pick a month
-        WebElement birtMonth = driver.findElement(Locators.DROP_DOWN_MONTH); // Month of birth
-        birtMonth.click();
-        List<WebElement> month_list = driver.findElements(Locators.MONTH_LIST);
-        int month_list_size = month_list.size();
-        System.out.println();
-        System.out.println("The size of 'month_list' is: " + month_list_size);
-        for (int i = 0; i < month_list_size; i++){
-            System.out.print(month_list.get(i).getText() + " ");
-        }
-        for (int i = 0; i < month_list_size; i++){
-            if (month_list.get(i).getText().contains("Jun")){ //Enter the month
-                month_list.get(i).click();
-                break;
-            }
-        }
-        // Pick a year
-        WebElement birtYear = driver.findElement(Locators.DROP_DOWN_YEAR);  // Year of birth
-        birtYear.click();
-        List<WebElement> year_list = driver.findElements(Locators.YEAR_LIST);
-        int year_list_size = year_list.size();
-        System.out.println("The size of 'year_list' is: " + year_list_size);
-        for ( int i = 0; i < year_list_size; i++){
-            System.out.print(year_list.get(i).getText() + " ");
-        }
-        for ( int i = 0; i < year_list_size; i++){
-            if (year_list.get(i).getText().contains("1991")){ // Enter the year
-                year_list.get(i).click();
-                break;
-            }
-        }
-        // Enter phone number
-        WebElement phoneTextField = driver.findElement(Locators.TEXT_FIELD_PHONE);
-        phoneTextField.sendKeys(Data.phone);
-        // Enter location
-        WebElement locationTextField = driver.findElement(Locators.TEXT_FIELD_LOCATION);
-        locationTextField.clear();
-        locationTextField.sendKeys("Bellevue, Washington, United States");
-        // Click checkbox
-        WebElement checkBox = driver.findElement(Locators.CHECK_BOX);
-        checkboxConfirmation = checkBox.isSelected();
-        System.out.println();
-        System.out.println("Checkbox previously selected: " + checkboxConfirmation + " !!!!!!!!");
-        if (!checkboxConfirmation){
-            checkBox.click();
-            System.out.println("Checkbox had been selected now.");
-        }
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(Locators.TEXT_FIELD_PASSWORD)));
+        driver.findElement(Locators.TEXT_FIELD_PASSWORD).sendKeys(password); // Password text field
     }
 
-    public void clickNextButton(){
+    public void clickNextButton1(){
+        // Click NEXT button
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(Locators.BUTTON_NEXT_FIRST_PART)));
+        driver.findElement(Locators.BUTTON_NEXT_FIRST_PART).click(); //NEXT button (after Password)
+    }
+
+    public void completeSecondPartOfRegistration(String username, String phone, String day,
+                                                 String month, String year, String city, String location){
+        // Enter username
+        driver.findElement(Locators.TEXT_FIELD_USERNAME).sendKeys(username); // Username text field
+
+        // Pick a date
+        driver.findElement(Locators.DROP_DOWN_DAY).click(); // Date of birth
+        clickValueOfLists(Locators.DAY_LIST, day);
+
+        // Pick a month
+        driver.findElement(Locators.DROP_DOWN_MONTH).click(); // Month of birth
+        clickValueOfLists(Locators.MONTH_LIST, month);
+
+        // Pick a year
+        driver.findElement(Locators.DROP_DOWN_YEAR).click();  // Year of birth
+        clickValueOfLists(Locators.YEAR_LIST, year);
+
+        // Enter phone number
+        driver.findElement(Locators.TEXT_FIELD_PHONE).sendKeys(phone);
+
+        // Click checkbox
+        driver.findElement(Locators.CHECK_BOX_CONFIRMATION).click();
+
+        // Enter location
+        driver.findElement(Locators.TEXT_FIELD_LOCATION).clear();
+        driver.findElement(Locators.TEXT_FIELD_LOCATION).sendKeys(city);
+        wait.until(ExpectedConditions.elementToBeClickable(Locators.LOCATION_LIST));
+        clickValueOfLists(Locators.LOCATION_LIST, location);
+
+    }
+
+    public void clickNextButton2(){
         // Click NEXT button
         WebElement nextButton2 = driver.findElement(Locators.BUTTON_NEXT2); //NEXT button (after check box)
         //nextButton2.click(); // button id disabled

@@ -1,3 +1,5 @@
+package com.romanceabroad.ui;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -23,6 +25,7 @@ public class BaseUI {
     TourPage tourPage;
     BlogPage blogPage;
     SignInPage signInPage;
+    TestPage testPage;
     SoftAssert softAssert = new SoftAssert();
 
     @BeforeMethod(groups = {"user", "admin", "ie"}, alwaysRun = true)
@@ -60,6 +63,7 @@ public class BaseUI {
         tourPage = new TourPage(driver, wait);
         blogPage = new BlogPage(driver, wait);
         signInPage = new SignInPage(driver, wait);
+        testPage = new TestPage(driver, wait);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get(Data.MAIN_URL);

@@ -1,6 +1,8 @@
+package com.romanceabroad.ui;
+
 import org.testng.annotations.Test;
 
-public class Conditions extends BaseUI{ // extends BaseUI
+public class Conditions extends BaseUI{ // extends com.romanceabroad.ui.BaseUI
 
     @Test
 

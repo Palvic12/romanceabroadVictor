@@ -1,12 +1,25 @@
+package com.romanceabroad.ui;
+
 public class Data {
 
     // Registration data
     public static final String MAIN_URL = "https://romanceabroad.com";
     public static final String HOW_WE_WORK_PAGE = "https://romanceabroad.com/content/view/how-it-works";
+
     public static final String email = "11@gmail.com";
+    public static final String emai2 = "11yahoo.com";
+    public static final String emai3 = "11@mail.ru";
     public static final String password = "11@gmail.com";
-    public static final String username = "gogu";
+    public static final String username1part = "Gogu";
+    public static final String username = MainPage.generateNewNumber(username1part, Data.lengthSecondPartOfUsername);
     public static final String phone = "9876543210";
+    public static final int lengthSecondPartOfUsername = 5;
+
+    public static final String day = "28";
+    public static final String month = "Jun";
+    public static final String year = "1991";
+    public static final String city = "Sydney";
+    public static final String location = "North Sydney, State of New South Wales, Australia";
 
 //    ________________________________
 //    HOME Page
@@ -26,7 +39,7 @@ public class Data {
     public static final String expectedUrlHowWeWork = "https://romanceabroad.com/content/view/how-it-works";
     public static final String expectedPageTitleHowWeWork = "Real Ukrainian women for marriage: legitimate dating site Marry Ukrainian Lady";
     public static final String expectedLinkTextHowWeWork = "HOW WE WORK";
-    public static final String expectedHOME = "澳门论坛";
+    public static final String expectedHOME = "1995论坛";
     public static final String expectedSIGN_UP = "User registration";
     public static final String expectedLOGIN = "Sign in";
     public static final String expectedNEWS = "News";
@@ -58,6 +71,12 @@ public class Data {
     public static final String expectedUrlMedia = "https://romanceabroad.com/media/index";
     public static final String expectedPageTitleMedia = "Ukrainian women photos: ladies pictures at Marry Ukrainian Lady";
     public static final String expectedLinkTextMedia = "PHOTOS";
+
+    public static final String expectedTitleAllPhotos = "Ukrainian women photos";
+    public static final String expectedTitleGallery = "Gallery";
+    public static final String expectedTitlePhotoGallery = "Photo gallery";
+    public static final String expectedTitleVideoGallery = "Video gallery";
+    public static final String expectedTitleGalleryAlbums = "Gallery albums";
 //    ________________________________
 //    Gifts Page
 //    ________________________________
@@ -83,6 +102,7 @@ public class Data {
 //    Blog Page
 //    ________________________________
 
+    public static final String BLOG_PAGE = "https://romanceabroad.com/content/view/blog";
     public static final String expectedUrlBlog = "https://romanceabroad.com/content/view/blog";
     public static final String expectedPageTitleBlog = "Blog";
     public static final String expectedLinkTextBlog = "BLOG";

@@ -46,6 +46,17 @@ public class Data {
     public static final String expectedPOLLS = "Sign in";
     public static final String expectedContactUs = "Contact administrator";
     public static final String expectedSitemap = "Site map";
+    //how it works header links
+    public static final String expectedHeaderLinkGiftsPix = "Gifts";
+    public static final String expectedHeaderLinkGiftsTxt = "Gifts";
+    public static final String expectedHeaderLinkTourToUkrainePix = "TOURS TO UKRAINE";
+    public static final String expectedHeaderLinkTourToUkraineTxt = "TOURS TO UKRAINE";
+    public static final String expectedHeaderLinkIndividualTourPix = "TOURS TO UKRAINE";
+    public static final String expectedHeaderLinkIndividualTourTxt = "TOURS TO UKRAINE";
+    public static final String expectedHeaderLinkHeart = "The Best Free Ukrainian Dating Site| Romanceabroad.Com";
+    public static final String expectedHeaderButtonFindPeople = "Single Ukrainian women online";
+    public static final String expectedHeaderButtonLogin = "Login";
+
     //how it works inner_menu
     public static final String expectedAdvertising = "Advertising";
     public static final String expectedTermsOfUse = "Terms of use";
@@ -72,11 +83,15 @@ public class Data {
     public static final String expectedPageTitleMedia = "Ukrainian women photos: ladies pictures at Marry Ukrainian Lady";
     public static final String expectedLinkTextMedia = "PHOTOS";
 
+    //User profile
     public static final String expectedTitleAllPhotos = "Ukrainian women photos";
     public static final String expectedTitleGallery = "Gallery";
     public static final String expectedTitlePhotoGallery = "Photo gallery";
     public static final String expectedTitleVideoGallery = "Video gallery";
     public static final String expectedTitleGalleryAlbums = "Gallery albums";
+
+    //Media
+    public static final String textMedia = "On our website you have access to photos of all different kinds of women.";
 //    ________________________________
 //    Gifts Page
 //    ________________________________

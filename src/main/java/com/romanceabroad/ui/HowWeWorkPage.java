@@ -6,8 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class HowWeWorkPage extends BaseActions{
@@ -105,59 +103,7 @@ public class HowWeWorkPage extends BaseActions{
         WebElement close_menu_btn = driver.findElement(Locators.CLOSE_MENU_BTN);
         close_menu_btn.click();
     }
-    public void checkHeaderMenuTabsVERSION1(){
-        System.out.println("--- Checking Header Menu Tabs ---");
-        System.out.println("Number of links in Header Menu: " + 9);
-        WebElement headerLinkGiftsPix = driver.findElement(Locators.HEADER_LINK_GIFTS_PIX);
-        headerLinkGiftsPix.click();
-        driver.get(Data.HOW_WE_WORK_PAGE);
-        WebElement headerLinkGiftsTxt = driver.findElement(Locators.HEADER_LINK_GIFTS_TXT);
-        headerLinkGiftsTxt.click();
-        driver.get(Data.HOW_WE_WORK_PAGE);
-        WebElement headerLinkTourToUkrainePix = driver.findElement(Locators.HEADER_TOUR_TO_UKRAINE_PIX);
-        headerLinkTourToUkrainePix.click();
-        driver.get(Data.HOW_WE_WORK_PAGE);
-        WebElement headerLinkTourToUkraineTxt = driver.findElement(Locators.HEADER_TOUR_TO_UKRAINE_TXT);
-        headerLinkTourToUkraineTxt.click();
-        driver.get(Data.HOW_WE_WORK_PAGE);
-        WebElement headerLinkIndividualTourPix = driver.findElement(Locators.HEADER_INDIVIDUAL_TOUR_PIX);
-        headerLinkIndividualTourPix.click();
-        driver.get(Data.HOW_WE_WORK_PAGE);
-        WebElement headerLinkIndividualTourTxt = driver.findElement(Locators.HEADER_INDIVIDUAL_TOUR_TXT);
-        headerLinkIndividualTourTxt.click();
-        driver.get(Data.HOW_WE_WORK_PAGE);
-        WebElement headerLinkHeart = driver.findElement(Locators.HEADER_LINK_HEART);
-        headerLinkHeart.click();
-        driver.get(Data.HOW_WE_WORK_PAGE);
-        WebElement headerButtonFindPeople = driver.findElement(Locators.HEADER_BUTTON_FIND_PEOPLE);
-        headerButtonFindPeople.click();
-        driver.get(Data.HOW_WE_WORK_PAGE);
-        WebElement headerButtonLogin = driver.findElement(Locators.HEADER_BUTTON_LOGIN);
-        headerButtonLogin.click();
-        driver.get(Data.HOW_WE_WORK_PAGE);
-    }
-    public void checkHeaderMenuTabsVERSION2(){ // is not working
-        System.out.println("--- Checking Header Menu Tabs ---");
-        driver.get(Data.HOW_WE_WORK_PAGE);
-        WebElement headerLinkGiftsPix = driver.findElement(Locators.HEADER_LINK_GIFTS_PIX);
-        WebElement headerLinkGiftsTxt = driver.findElement(Locators.HEADER_LINK_GIFTS_TXT);
-        WebElement headerLinkTourToUkrainePix = driver.findElement(Locators.HEADER_TOUR_TO_UKRAINE_PIX);
-        WebElement headerLinkTourToUkraineTxt = driver.findElement(Locators.HEADER_TOUR_TO_UKRAINE_TXT);
-        WebElement headerLinkIndividualTourPix = driver.findElement(Locators.HEADER_INDIVIDUAL_TOUR_PIX);
-        WebElement headerLinkIndividualTourTxt = driver.findElement(Locators.HEADER_INDIVIDUAL_TOUR_TXT);
-        WebElement headerLinkHeart = driver.findElement(Locators.HEADER_LINK_HEART);
-        WebElement headerButtonFindPeople = driver.findElement(Locators.HEADER_BUTTON_FIND_PEOPLE);
-        WebElement headerButtonLogin = driver.findElement(Locators.HEADER_BUTTON_LOGIN);
-        List<WebElement> links = new ArrayList<>(Arrays.asList(headerLinkGiftsPix, headerLinkGiftsTxt,headerLinkTourToUkrainePix, headerLinkTourToUkraineTxt, headerLinkIndividualTourPix, headerLinkIndividualTourTxt, headerLinkHeart, headerButtonFindPeople, headerButtonLogin));
-        System.out.println(links.size());
-        for (int i = 0; i < links.size(); i++) {
-            String info = links.get(i).getText();
-            System.out.println(i+1 + ". " + info);
-            ajaxClick(links.get(i));
-            driver.get(Data.HOW_WE_WORK_PAGE);
-            links = new ArrayList<WebElement>(Arrays.asList(headerLinkGiftsPix, headerLinkGiftsTxt,headerLinkTourToUkrainePix, headerLinkTourToUkraineTxt, headerLinkIndividualTourPix, headerLinkIndividualTourTxt, headerLinkHeart, headerButtonFindPeople, headerButtonLogin));
-        }
-    }
+
     public List<WebElement> collectInnerMenuLinksHowWeWorkPage(){
         // Clicking all Inner Menu Links from HowWeWorkPage
         List<WebElement> links = driver.findElements(Locators.WEB_ELEMENT_INNER_MENU_LINKS);

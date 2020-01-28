@@ -40,4 +40,14 @@ public class DataProviders {
         };
     }
 
+    @DataProvider(name = "ContactUs")
+    public static Object[][] testContactUs(){
+        return new Object[][]{
+                {"Pre-Sales Questions", "Test contacting 1", "We missed you! first"},
+                {"Technical support", "Test contacting 2", "We missed you! second"},
+                {"Other", "Test contacting 3", "We missed you! third"},
+
+        };
+    }
+
 }

@@ -21,6 +21,7 @@ public class Locators {
     public static final By JOIN_TODAY_LINK = By.xpath("//a[contains(text(),'JOIN TODAY!')]");
     public static final By H1_TITLE = By.xpath("//h1");
 
+
 //    ________________________________
 //    HOW WE WORK Page
 //    ________________________________
@@ -101,6 +102,15 @@ public class Locators {
     public static final By FOOTER_LINK_PRIVACY = By.cssSelector(".footer-menu-list-group-item>a[href='https://romanceabroad.com/content/view/privacy-and-security']");
     public static final By FOOTER_LINK_TERMS_OF_USE = By.cssSelector(".footer-menu-list-group-item>a[href='https://romanceabroad.com/content/view/legal-terms']");
 
+    //ContactUs
+    public static final By CONTACT_US_REASON_SELECT = By.xpath("//select[@name='id_reason']");
+    public static final By CONTACT_US_NAME_TEXT_BOX = By.xpath("//input[@name='user_name']");
+    public static final By CONTACT_US_EMAIL_TEXT_BOX = By.xpath("//input[@name='user_email']");
+    public static final By CONTACT_US_SUBJECT_TEXT_BOX = By.xpath("//input[@name='subject']");
+    public static final By CONTACT_US_MESSAGE_TEXT_AREA = By.xpath("//textarea[@name='message']");
+    public static final By CONTACT_US_SECURITY_CODE_TEXT_BOX = By.xpath("//input[@id='g-recaptcha-response']");
+    public static final By CONTACT_US_SEND_BUTTON = By.xpath("//input[@name='btn_save']");
+
 //    ________________________________
 //    SearchPage (PrettyWomen)
 //    ________________________________
@@ -135,6 +145,9 @@ public class Locators {
     public static final By PHOTO_SORTER_ARROW_UP = By.cssSelector(".fa-arrow-up");
     public static final By PHOTO_SORTER_ARROW_DOWN = By.cssSelector(".fa-arrow-down");
     public static final By GALLERY_PICTURE_MEDIA = By.xpath("//a[@class='g-pic-border g-rounded g-users-gallery__photo-img']");
+    public static final By TEXT_MEDIA = By.xpath("//div[@class='g-flatty-block']");
+    public static final By MEDIA_ALBUM = By.xpath("//span[@data-click= 'album']");
+
     public static final By LINK_ALL = By.cssSelector("a[href='https://romanceabroad.com/media/all']");
     public static final By LINK_PHOTO = By.cssSelector("a[href='https://romanceabroad.com/media/photo']");
     public static final By LINK_VIDEO = By.cssSelector("a[href='https://romanceabroad.com/media/video']");

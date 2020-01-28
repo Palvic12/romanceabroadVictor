@@ -25,6 +25,10 @@ public class BaseActions {
         return name + RandomStringUtils.random(length, "0123456789");
     }
 
+    public static String generateSecurityCode(){
+        return RandomStringUtils.random(5, "0123456789");
+    }
+
     public void selectByIndex(WebElement element, int index){
         Select select = new Select(element);
         select.selectByIndex(index);

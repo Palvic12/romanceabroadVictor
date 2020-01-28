@@ -377,6 +377,57 @@ public class TestTests extends BaseUI { //extends com.romanceabroad.ui.BaseUI
 //                Data.day, Data.month, Data.year, Data.city, Data.location);
 ////        testPage.clickNextButton(); // Next button not working
 //    }
+    //***************************************************************************
+    //Home Work 17
+    //***************************************************************************
+
+    @Test
+    public void testContactUs(){ // HomeWork17
+        mainPage.clickLinkBlog();
+        mainPage.scrollToBottomOfPage();
+        driver.findElement(Locators.FOOTER_LINK_CONTACT).click();
+        actualTitle = blogPage.getAnyTitle();
+        Assert.assertEquals(actualTitle, Data.expectedContactUs, "Title is not correct!");
+        WebElement reasonTextBox = driver.findElement(Locators.CONTACT_US_REASON_SELECT);
+        reasonTextBox.click();
+        mainPage.getDropDownListByText(reasonTextBox, "Technical support");
+        WebElement yourName = driver.findElement(Locators.CONTACT_US_NAME_TEXT_BOX);
+        yourName.sendKeys(Data.username);
+        WebElement yourEmail = driver.findElement(Locators.CONTACT_US_EMAIL_TEXT_BOX);
+        yourEmail.sendKeys(Data.email);
+        WebElement subject = driver.findElement(Locators.CONTACT_US_SUBJECT_TEXT_BOX);
+        subject.sendKeys("Test contact");
+        WebElement message = driver.findElement(Locators.CONTACT_US_MESSAGE_TEXT_AREA);
+        message.sendKeys("We missed you!");
+        WebElement securityCode = driver.findElement(Locators.CONTACT_US_SECURITY_CODE_TEXT_BOX);
+        securityCode.sendKeys(mainPage.generateSecurityCode());
+        WebElement sendButton = driver.findElement(Locators.CONTACT_US_SEND_BUTTON);
+//        sendButton.click();
+    }
+
+    @Test(dataProvider = "ContactUs", dataProviderClass = DataProviders.class)
+    public void testContactUsDProv(String reason, String subject, String message){ // HomeWork17
+        mainPage.clickLinkBlog();
+        mainPage.scrollToBottomOfPage();
+        driver.findElement(Locators.FOOTER_LINK_CONTACT).click();
+        actualTitle = blogPage.getAnyTitle();
+        Assert.assertEquals(actualTitle, Data.expectedContactUs, "Title is not correct!");
+        WebElement reasonTextBox = driver.findElement(Locators.CONTACT_US_REASON_SELECT);
+        reasonTextBox.click();
+        mainPage.getDropDownListByText(reasonTextBox, reason);
+        WebElement yourName = driver.findElement(Locators.CONTACT_US_NAME_TEXT_BOX);
+        yourName.sendKeys(Data.username);
+        WebElement yourEmail = driver.findElement(Locators.CONTACT_US_EMAIL_TEXT_BOX);
+        yourEmail.sendKeys(Data.email);
+        driver.findElement(Locators.CONTACT_US_SUBJECT_TEXT_BOX).sendKeys(subject);
+        driver.findElement(Locators.CONTACT_US_MESSAGE_TEXT_AREA).sendKeys(message);
+        WebElement securityCode = driver.findElement(Locators.CONTACT_US_SECURITY_CODE_TEXT_BOX);
+        securityCode.sendKeys(mainPage.generateSecurityCode());
+        WebElement sendButton = driver.findElement(Locators.CONTACT_US_SEND_BUTTON);
+//        sendButton.click();
+
+
+    }
 
     //***************************************************************************
     //Lesson 18
@@ -556,8 +607,8 @@ public class TestTests extends BaseUI { //extends com.romanceabroad.ui.BaseUI
     }
 
     @Test
-    public void checkHeaderMenuTabsVERSION2() {
-        testPage.checkHeaderMenuTabsVERSION2();
+    public void checkHeaderMenuTabsVERSION1() {
+        testPage.checkHeaderMenuTabsVERSION1();
     }
 
     @Test
@@ -733,36 +784,6 @@ public class TestTests extends BaseUI { //extends com.romanceabroad.ui.BaseUI
                 Assert.assertEquals(actualTitle, Data.expectedTitleGalleryAlbums);
             }
             links = driver.findElements(Locators.MEDIA_LINKS);
-
-            // Choose criteria of sorting
-            if(!info.contains("Albums")){
-                int sizeOfSortByDropDownList = mediaPage.getSizeDropDownList(Locators.DROP_DOWN_LIST_MEDIA_SORTER);
-                for (int j = 0; j < sizeOfSortByDropDownList; j++) {
-                    WebElement sortByList = driver.findElement(Locators.DROP_DOWN_LIST_MEDIA_SORTER);
-                    mediaPage.selectByIndex(sortByList, j);
-                }
-            }
-            else if(info.contains("Albums")){
-                int sizeOfSortByDropDownList = mediaPage.getSizeDropDownList(Locators.DROP_DOWN_LIST_MEDIA_SORTER_ALBUMS);
-                for (int k = 1; k < sizeOfSortByDropDownList; k++) {
-                    WebElement sortByList = driver.findElement(Locators.DROP_DOWN_LIST_MEDIA_SORTER_ALBUMS);
-                    mediaPage.selectByIndex(sortByList, k);
-
-                    int sizeOfSortByDropDownList2 = mediaPage.getSizeDropDownList(Locators.DROP_DOWN_LIST_MEDIA_SORTER);
-                    for (int p = 0; p < sizeOfSortByDropDownList2; p++) {
-                        WebElement sortByList2 = driver.findElement(Locators.DROP_DOWN_LIST_MEDIA_SORTER);
-                        mediaPage.selectByIndex(sortByList2, p);
-                    }
-                }
-            }
-            // Click on 'ArrowDown' button
-            WebElement arrowDownSorter = driver.findElement(Locators.PHOTO_SORTER_ARROW_DOWN);
-            arrowDownSorter.click();
-            // Click on 'ArrowUp' button
-            WebElement arrowUpSorter = driver.findElement(Locators.PHOTO_SORTER_ARROW_UP);
-            arrowUpSorter.click();
-            links = driver.findElements(Locators.MEDIA_LINKS);
-
         }
     }
 
@@ -783,52 +804,23 @@ public class TestTests extends BaseUI { //extends com.romanceabroad.ui.BaseUI
             links.get(i).click();
             actualTitle = mediaPage.getAnyTitle();
             System.out.println("Actual title is: " + actualTitle);
-            if (actualTitle.contains(Data.expectedTitleGallery) || actualTitle.contains(Data.expectedTitlePhotoGallery)
-                    || actualTitle.contains(Data.expectedTitleVideoGallery) || actualTitle.contains(Data.expectedTitleGalleryAlbums)) {
-                System.out.println("Title is valid: " + actualTitle);
-            } else {
-                Assert.fail("Title is not valid,");
-            }
-
-
-                /*Assert.assertEquals(actualTitle, Data.expectedTitleGallery);
+            if (i == 0){
+                Assert.assertEquals(actualTitle, Data.expectedTitleGallery);
             } else if (i == 1) {
                 Assert.assertEquals(actualTitle, Data.expectedTitlePhotoGallery);
             } else if (i == 2) {
                 Assert.assertEquals(actualTitle, Data.expectedTitleVideoGallery);
+                String textMedia = driver.findElement(Locators.TEXT_MEDIA).getText();
+                if (textMedia.contains(Data.textMedia)){
+                    System.out.println("Text media is correct!");
+                }
+                Assert.assertTrue(textMedia.contains(Data.textMedia), "Text media is NOT correct!");
             } else if (i == 3) {
                 Assert.assertEquals(actualTitle, Data.expectedTitleGalleryAlbums);
-            }*/
+                mainPage.javaWaitSec(2);
+                Assert.assertTrue(driver.findElement(Locators.MEDIA_ALBUM).isDisplayed());
+            }
             links = driver.findElements(Locators.MEDIA_LINKS);
-
-//            // Choose criteria of sorting
-//            if(!info.contains("Albums")){
-//                int sizeOfSortByDropDownList = mediaPage.getSizeDropDownList(Locators.DROP_DOWN_LIST_MEDIA_SORTER);
-//                for (int j = 0; j < sizeOfSortByDropDownList; j++) {
-//                    WebElement sortByList = driver.findElement(Locators.DROP_DOWN_LIST_MEDIA_SORTER);
-//                    mediaPage.selectByIndex(sortByList, j);
-//                }
-//            }
-//            else if(info.contains("Albums")){
-//                int sizeOfSortByDropDownList = mediaPage.getSizeDropDownList(Locators.DROP_DOWN_LIST_MEDIA_SORTER_ALBUMS);
-//                for (int k = 1; k < sizeOfSortByDropDownList; k++) {
-//                    WebElement sortByList = driver.findElement(Locators.DROP_DOWN_LIST_MEDIA_SORTER_ALBUMS);
-//                    mediaPage.selectByIndex(sortByList, k);
-//
-//                    int sizeOfSortByDropDownList2 = mediaPage.getSizeDropDownList(Locators.DROP_DOWN_LIST_MEDIA_SORTER);
-//                    for (int p = 0; p < sizeOfSortByDropDownList2; p++) {
-//                        WebElement sortByList2 = driver.findElement(Locators.DROP_DOWN_LIST_MEDIA_SORTER);
-//                        mediaPage.selectByIndex(sortByList2, p);
-//                    }
-//                }
-//            }
-//            // Click on 'ArrowDown' button
-//            WebElement arrowDownSorter = driver.findElement(Locators.PHOTO_SORTER_ARROW_DOWN);
-//            arrowDownSorter.click();
-//            // Click on 'ArrowUp' button
-//            WebElement arrowUpSorter = driver.findElement(Locators.PHOTO_SORTER_ARROW_UP);
-//            arrowUpSorter.click();
-//            links = driver.findElements(Locators.MEDIA_LINKS);
 
         }
     }

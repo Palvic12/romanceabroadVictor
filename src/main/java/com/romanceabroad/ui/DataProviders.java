@@ -11,8 +11,8 @@ public class DataProviders {
     public static Object[][] testRegistration2(){
         return new Object[][]{
                 {Data.email, Data.username, true}, //username is the same
-                {Data.emai2, Data.username, false},
-                {Data.emai3, Data.username, true},
+                {Data.email2, Data.username, false},
+                {Data.email3, Data.username, true},
         };
     }
 
@@ -47,6 +47,16 @@ public class DataProviders {
                 {"Technical support", "Test contacting 2", "We missed you! second"},
                 {"Other", "Test contacting 3", "We missed you! third"},
 
+        };
+    }
+
+    @DataProvider(name = "SignInNegative")
+    public static Object[][] testSignInNeg(){
+        return new Object[][]{
+//                {Data.email, Data.password,true},
+                {Data.email2, Data.password, false},
+                {Data.email4, Data.password, false},
+                {Data.email, Data.password,true}
         };
     }
 

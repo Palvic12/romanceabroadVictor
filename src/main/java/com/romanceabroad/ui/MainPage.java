@@ -284,6 +284,7 @@ public class MainPage extends BaseActions{
 
     public void clickJoinButton(){
         // Click the Registration button
+        wait.until(ExpectedConditions.elementToBeClickable(Locators.BUTTON_REGISTRATION));
         WebElement registrationButton = driver.findElement(Locators.BUTTON_REGISTRATION); // 'JOIN FOR FREE NOW' button
 //        registrationButton.click();
         ajaxClick(registrationButton);
@@ -291,7 +292,7 @@ public class MainPage extends BaseActions{
 
     public void completeFirstPartOfRegistration(String email, String password){
         //Enter email
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(Locators.TEXT_FIELD_EMAIL)));
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(Locators.TEXT_FIELD_EMAIL)));
         driver.findElement(Locators.TEXT_FIELD_EMAIL).sendKeys(email); // Email text field
 
         //Enter password
@@ -310,13 +311,16 @@ public class MainPage extends BaseActions{
         // Enter username
         driver.findElement(Locators.TEXT_FIELD_USERNAME).sendKeys(username); // Username text field
 
-        // Pick a date
-        driver.findElement(Locators.DROP_DOWN_DAY).click(); // Date of birth
-        clickValueOfLists(Locators.DAY_LIST, day);
-
         // Pick a month
         driver.findElement(Locators.DROP_DOWN_MONTH).click(); // Month of birth
         clickValueOfLists(Locators.MONTH_LIST, month);
+
+        // Pick a date
+        wait.until(ExpectedConditions.elementToBeClickable(Locators.DROP_DOWN_DAY));
+        driver.findElement(Locators.DROP_DOWN_DAY).click(); // Date of birth
+        clickValueOfLists(Locators.DAY_LIST, day);
+
+
 
         // Pick a year
         driver.findElement(Locators.DROP_DOWN_YEAR).click();  // Year of birth

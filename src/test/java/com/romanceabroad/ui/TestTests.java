@@ -55,76 +55,9 @@ public class TestTests extends BaseUI { //extends com.romanceabroad.ui.BaseUI
 
 //        driver.get(Data.HOW_WE_WORK_PAGE);
 //        //***********************************************************************************************
-//        System.out.println("--- Checking Header Menu Tabs ---");
-//        System.out.println(9);
-//        WebElement headerLinkGiftsPix = driver.findElement(Locators.HEADER_LINK_GIFTS_PIX);
-//        headerLinkGiftsPix.click();
-//        driver.get(Data.HOW_WE_WORK_PAGE);
-//        WebElement headerLinkGiftsTxt = driver.findElement(Locators.HEADER_LINK_GIFTS_TXT);
-//        headerLinkGiftsTxt.click();
-//        driver.get(Data.HOW_WE_WORK_PAGE);
-//        WebElement headerLinkTourToUkrainePix = driver.findElement(Locators.HEADER_TOUR_TO_UKRAINE_PIX);
-//        headerLinkTourToUkrainePix.click();
-//        driver.get(Data.HOW_WE_WORK_PAGE);
-//        WebElement headerLinkTourToUkraineTxt = driver.findElement(Locators.HEADER_TOUR_TO_UKRAINE_TXT);
-//        headerLinkTourToUkraineTxt.click();
-//        driver.get(Data.HOW_WE_WORK_PAGE);
-//        WebElement headerLinkIndividualTourPix = driver.findElement(Locators.HEADER_INDIVIDUAL_TOUR_PIX);
-//        headerLinkIndividualTourPix.click();
-//        driver.get(Data.HOW_WE_WORK_PAGE);
-//        WebElement headerLinkIndividualTourTxt = driver.findElement(Locators.HEADER_INDIVIDUAL_TOUR_TXT);
-//        headerLinkIndividualTourTxt.click();
-//        driver.get(Data.HOW_WE_WORK_PAGE);
-//        WebElement headerLinkHeart = driver.findElement(Locators.HEADER_LINK_HEART);
-//        headerLinkHeart.click();
-//        driver.get(Data.HOW_WE_WORK_PAGE);
-//        WebElement headerButtonFindPeople = driver.findElement(Locators.HEADER_BUTTON_FIND_PEOPLE);
-//        headerButtonFindPeople.click();
-//        driver.get(Data.HOW_WE_WORK_PAGE);
-//        WebElement headerButtonLogin = driver.findElement(Locators.HEADER_BUTTON_LOGIN);
-//        headerButtonLogin.click();
-//        driver.get(Data.HOW_WE_WORK_PAGE);
 
-////        //***********************************************************************************************
-////        //checkHeaderMenuTabs()
-//        System.out.println("--- Checking Header Menu Tabs ---");
-//        driver.get(Data.HOW_WE_WORK_PAGE);
-//        WebElement headerLinkGiftsPix = driver.findElement(Locators.HEADER_LINK_GIFTS_PIX);
-//        WebElement headerLinkGiftsTxt = driver.findElement(Locators.HEADER_LINK_GIFTS_TXT);
-//        WebElement headerLinkTourToUkrainePix = driver.findElement(Locators.HEADER_TOUR_TO_UKRAINE_PIX);
-//        WebElement headerLinkTourToUkraineTxt = driver.findElement(Locators.HEADER_TOUR_TO_UKRAINE_TXT);
-//        WebElement headerLinkIndividualTourPix = driver.findElement(Locators.HEADER_INDIVIDUAL_TOUR_PIX);
-//        WebElement headerLinkIndividualTourTxt = driver.findElement(Locators.HEADER_INDIVIDUAL_TOUR_TXT);
-//        WebElement headerLinkHeart = driver.findElement(Locators.HEADER_LINK_HEART);
-//        WebElement headerButtonFindPeople = driver.findElement(Locators.HEADER_BUTTON_FIND_PEOPLE);
-//        WebElement headerButtonLogin = driver.findElement(Locators.HEADER_BUTTON_LOGIN);
-////
-////
-////        List<WebElement> headerMenuElements = new ArrayList<WebElement>(Arrays.asList(headerLinkGiftsPix, headerLinkGiftsTxt,headerLinkTourToUkrainePix, headerLinkTourToUkraineTxt, headerLinkIndividualTourPix, headerLinkIndividualTourTxt, headerLinkHeart, headerButtonFindPeople, headerButtonLogin));
-//        List<WebElement> headerMenuElements = new ArrayList<>(Arrays.asList());
-//        headerMenuElements.add(headerLinkGiftsPix);
-//        headerMenuElements.add(headerLinkGiftsTxt);
-//        headerMenuElements.add(headerLinkTourToUkrainePix);
-//        headerMenuElements.add(headerLinkTourToUkraineTxt);
-//        headerMenuElements.add(headerLinkIndividualTourPix);
-//        headerMenuElements.add(headerLinkIndividualTourTxt);
-//        headerMenuElements.add(headerLinkHeart);
-//        headerMenuElements.add(headerButtonFindPeople);
-//        headerMenuElements.add(headerButtonLogin);
-//
-//        System.out.println(headerMenuElements.size());
-//        for (int i = 0; i < headerMenuElements.size(); i++) {
-//            String headerMenuElementsText = headerMenuElements.get(i).getText();
-//            System.out.println(i+1 + ". " + headerMenuElementsText);
-//            if (headerMenuElements.get(i).isDisplayed()){
-//                headerMenuElements.get(i).click();
-//            }
-////            headerMenuElements.get(i).click();
-//            driver.get(Data.HOW_WE_WORK_PAGE);
-//            headerMenuElements = new ArrayList<WebElement>(Arrays.asList(headerLinkGiftsPix, headerLinkGiftsTxt,headerLinkTourToUkrainePix, headerLinkTourToUkraineTxt, headerLinkIndividualTourPix, headerLinkIndividualTourTxt, headerLinkHeart, headerButtonFindPeople, headerButtonLogin));
-////            headerMenuElements = new ArrayList<>(Arrays.asList());
-//            searchPage.timeWait(2000);
-//        }
+
+
 
         //************************************************************************************
 //        driver.get(Data.MEDIA_PAGE);
@@ -554,7 +487,6 @@ public class TestTests extends BaseUI { //extends com.romanceabroad.ui.BaseUI
                 System.out.println("Difference's actual title is: " + actualTitle);
                 Assert.assertEquals(actualTitle, Data.expectedDifference);
             }
-
             driver.get(Data.BLOG_PAGE);
             blogPage.javaWaitSec(1);
             links = testPage.collectAllLinksOfArticles();
@@ -585,7 +517,6 @@ public class TestTests extends BaseUI { //extends com.romanceabroad.ui.BaseUI
             links.get(i).click();
             driver.get(Data.BLOG_PAGE);
             links = driver.findElements(Locators.BLOG_ALL_LINKS);
-
         }
     }
 
@@ -601,14 +532,7 @@ public class TestTests extends BaseUI { //extends com.romanceabroad.ui.BaseUI
             links.get(i).click();
             driver.get(Data.BLOG_PAGE);
             links = driver.findElements(Locators.BLOG_ALL_LINKS);
-
         }
-
-    }
-
-    @Test
-    public void checkHeaderMenuTabsVERSION1() {
-        testPage.checkHeaderMenuTabsVERSION1();
     }
 
     @Test

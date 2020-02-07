@@ -7,9 +7,11 @@ public class Data {
     public static final String HOW_WE_WORK_PAGE = "https://romanceabroad.com/content/view/how-it-works";
 
     public static final String email = "11@gmail.com";
-    public static final String emai2 = "11yahoo.com";
-    public static final String emai3 = "11@mail.ru";
+    public static final String email2 = "11yahoo.com";
+    public static final String email3 = "11@mail.ru";
+    public static final String email4 = "4yahoo.com";
     public static final String password = "11@gmail.com";
+    public static final String password4 = "dada";
     public static final String username1part = "Gogu";
     public static final String username = MainPage.generateNewNumber(username1part, Data.lengthSecondPartOfUsername);
     public static final String phone = "9876543210";
@@ -140,6 +142,7 @@ public class Data {
     public static final String expectedLinkTextSignIn = "SIGN IN";
     public static final String expectedUrlErrorSignIn = "https://romanceabroad.com/users/login_form";
     public static final String expectedSignInErrorAlert = "Login or password are incorrect, please try again";
+    public static final String expectedSignInErrorAlertEmail = "Email is incorrect, please try again";
 
 
 

@@ -2,14 +2,10 @@ package com.romanceabroad.ui;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class HowWeWorkTests extends BaseUI{
@@ -18,15 +14,6 @@ public class HowWeWorkTests extends BaseUI{
     String urlHowWeWork;
     String info;
     String actualTitle;
-    String headerLinkGiftsPixActualTitle;
-    String headerLinkGiftsTxtActualTitle;
-    String headerLinkTourToUkrainePixActualTitle;
-    String headerLinkTourToUkraineTxtActualTitle;
-    String headerLinkIndividualTourPixActualTitle;
-    String headerLinkIndividualTourTxtActualTitle;
-    String headerLinkHeartActualTitle;
-    String headerButtonFindPeopleActualTitle;
-    String headerButtonLoginActualTitle;
     SoftAssert softAssert = new SoftAssert();
 
     @Test
@@ -47,247 +34,63 @@ public class HowWeWorkTests extends BaseUI{
     @Test
     public void checkHeaderMenuTabs(){
         System.out.println("--- Checking Header Menu Tabs ---");
-        System.out.println("Number of links in Header Menu: " + 9);
-        WebElement headerLinkGiftsPix = driver.findElement(Locators.HEADER_LINK_GIFTS_PIX);
-        headerLinkGiftsPix.click(); // 0
-        headerLinkGiftsPixActualTitle = driver.findElement(By.xpath("//div[@class='title']")).getText();
-        System.out.println("Header Link Gifts Pix' actual title is: " + headerLinkGiftsPixActualTitle);
-        softAssert.assertEquals(headerLinkGiftsPixActualTitle, Data.expectedHeaderLinkGiftsPix);
-
-        WebElement headerLinkGiftsTxt = driver.findElement(Locators.HEADER_LINK_GIFTS_TXT);
-        headerLinkGiftsTxt.click();
-        headerLinkGiftsTxtActualTitle = driver.findElement(By.xpath("//div[@class='title']")).getText();
-        System.out.println("Header Link Gifts Pix' actual title is: " + headerLinkGiftsTxtActualTitle);
-        softAssert.assertEquals(headerLinkGiftsTxtActualTitle, Data.expectedHeaderLinkGiftsTxt);
-
-        WebElement headerLinkTourToUkrainePix = driver.findElement(Locators.HEADER_TOUR_TO_UKRAINE_PIX);
-        headerLinkTourToUkrainePix.click();
-        headerLinkTourToUkrainePixActualTitle = blogPage.getAnyTitle();
-        System.out.println("Header Link Tour to Uktaine Pix' actual title is: " + headerLinkTourToUkrainePixActualTitle);
-        softAssert.assertEquals(headerLinkTourToUkrainePixActualTitle, Data.expectedHeaderLinkTourToUkrainePix);
-
-        WebElement headerLinkTourToUkraineTxt = driver.findElement(Locators.HEADER_TOUR_TO_UKRAINE_TXT);
-        headerLinkTourToUkraineTxt.click();
-        headerLinkTourToUkraineTxtActualTitle = blogPage.getAnyTitle();
-        System.out.println("Header Link Tour to Uktaine Txt' actual title is: " + headerLinkTourToUkraineTxtActualTitle);
-        softAssert.assertEquals(headerLinkTourToUkraineTxtActualTitle, Data.expectedHeaderLinkTourToUkraineTxt);
-
-        WebElement headerLinkIndividualTourPix = driver.findElement(Locators.HEADER_INDIVIDUAL_TOUR_PIX);
-        headerLinkIndividualTourPix.click();
-        headerLinkIndividualTourPixActualTitle = blogPage.getAnyTitle();
-        System.out.println("Header Link Tour to Uktaine Pix' actual title is: " + headerLinkIndividualTourPixActualTitle);
-        softAssert.assertEquals(headerLinkIndividualTourPixActualTitle, Data.expectedHeaderLinkIndividualTourPix);
-
-        WebElement headerLinkIndividualTourTxt = driver.findElement(Locators.HEADER_INDIVIDUAL_TOUR_TXT);
-        headerLinkIndividualTourTxt.click();
-        headerLinkIndividualTourTxtActualTitle = blogPage.getAnyTitle();
-        System.out.println("Header Link Tour to Uktaine Txt' actual title is: " + headerLinkIndividualTourTxtActualTitle);
-        softAssert.assertEquals(headerLinkIndividualTourTxtActualTitle, Data.expectedHeaderLinkIndividualTourTxt);
-
-        WebElement headerLinkHeart = driver.findElement(Locators.HEADER_LINK_HEART);
-        headerLinkHeart.click();
-        headerLinkHeartActualTitle = driver.getTitle();
-        System.out.println("Header Link Heart' actual title is: " + headerLinkHeartActualTitle);
-        softAssert.assertEquals(headerLinkHeartActualTitle, Data.expectedHeaderLinkHeart);
-
         driver.get(Data.HOW_WE_WORK_PAGE);
-        WebElement headerButtonFindPeople = driver.findElement(Locators.HEADER_BUTTON_FIND_PEOPLE);
-        headerButtonFindPeople.click();
-        headerButtonFindPeopleActualTitle = blogPage.getAnyTitle();
-        System.out.println("Header Button Find People' actual title is: " + headerButtonFindPeopleActualTitle);
-        softAssert.assertEquals(headerButtonFindPeopleActualTitle, Data.expectedHeaderButtonFindPeople);
-
-        WebElement headerButtonLogin = driver.findElement(Locators.HEADER_BUTTON_LOGIN);
-        headerButtonLogin.click();
-        headerButtonLoginActualTitle = driver.findElement(Locators.SIGNIN_TITLE).getText();
-        System.out.println("Header Button Login' actual title is: " + headerButtonLoginActualTitle);
-        softAssert.assertEquals(headerButtonLoginActualTitle, Data.expectedHeaderButtonLogin);
-        softAssert.assertAll();
-    }
-
-    @Test
-    public void checkHeaderMenuTabsVERSION1() { // TestPage.java,  code line: 85
-        System.out.println("--- Checking Header Menu Tabs ---");
-        driver.get(Data.HOW_WE_WORK_PAGE);
-        WebElement headerLinkGiftsPix = driver.findElement(Locators.HEADER_LINK_GIFTS_PIX);
-        WebElement headerLinkGiftsTxt = driver.findElement(Locators.HEADER_LINK_GIFTS_TXT);
-        WebElement headerLinkTourToUkrainePix = driver.findElement(Locators.HEADER_TOUR_TO_UKRAINE_PIX);
-        WebElement headerLinkTourToUkraineTxt = driver.findElement(Locators.HEADER_TOUR_TO_UKRAINE_TXT);
-        WebElement headerLinkIndividualTourPix = driver.findElement(Locators.HEADER_INDIVIDUAL_TOUR_PIX);
-        WebElement headerLinkIndividualTourTxt = driver.findElement(Locators.HEADER_INDIVIDUAL_TOUR_TXT);
         WebElement headerLinkHeart = driver.findElement(Locators.HEADER_LINK_HEART);
         WebElement headerButtonFindPeople = driver.findElement(Locators.HEADER_BUTTON_FIND_PEOPLE);
-        WebElement headerButtonLogin = driver.findElement(Locators.HEADER_BUTTON_LOGIN);
-        List<WebElement> links = new ArrayList<WebElement>();
-        links.add(headerLinkGiftsPix);
-        links.add(headerLinkGiftsTxt);
-        links.add(headerLinkTourToUkrainePix);
-        links.add(headerLinkTourToUkraineTxt);
-        links.add(headerLinkIndividualTourPix);
-        links.add(headerLinkIndividualTourTxt);
+        WebElement headerButtonFindLogIn = driver.findElement(Locators.HEADER_BUTTON_LOGIN);
+        List<WebElement> links = driver.findElements(Locators.HEADER_MENU_LINKS);
         links.add(headerLinkHeart);
         links.add(headerButtonFindPeople);
-        links.add(headerButtonLogin);
-
-        WebDriverWait listWait = new WebDriverWait(driver, 10);
-        listWait.until(ExpectedConditions.visibilityOfAllElements(links));
-
-        System.out.println("HeaderMenuTabsVERSION1 list size is: " + links.size());
+        links.add(headerButtonFindLogIn);
+        System.out.println("Number of elements in the list: " + links.size());
         for (int i = 0; i < links.size(); i++) {
+            System.out.print(i+1 + ". ");
             String info = links.get(i).getText();
-            System.out.println(i + 1 + ". " + info);
-//            ajaxClick(links.get(i));
+            System.out.println(info);
             links.get(i).click();
             if (i == 0) {
                 actualTitle = driver.findElement(By.xpath("//div[@class='title']")).getText();
-                System.out.println("Header Link Gifts Pix' actual title is: " + actualTitle);
-                Assert.assertEquals(actualTitle, Data.expectedHeaderLinkGiftsPix);
-            }
-            if (i == 1) {
-                actualTitle = driver.findElement(By.xpath("//div[@class='title']")).getText();
-                System.out.println("Header Link Gifts Pix' actual title is: " + actualTitle);
+                System.out.println("Header Link Gifts Txt' actual title is: " + actualTitle);
                 Assert.assertEquals(actualTitle, Data.expectedHeaderLinkGiftsTxt);
             }
-            if (i == 2) {
-                actualTitle = blogPage.getAnyTitle();
-                System.out.println("Header Link Tour to Uktaine Pix' actual title is: " + actualTitle);
-                Assert.assertEquals(actualTitle, Data.expectedHeaderLinkTourToUkrainePix);
-            }
-            if (i == 3) {
+            if (i == 1) {
                 actualTitle = blogPage.getAnyTitle();
                 System.out.println("Header Link Tour to Uktaine Txt' actual title is: " + actualTitle);
                 Assert.assertEquals(actualTitle, Data.expectedHeaderLinkTourToUkraineTxt);
             }
-            if (i == 4) {
+            if (i == 2) {
                 actualTitle = blogPage.getAnyTitle();
-                System.out.println("Header Link Tour to Uktaine Pix' actual title is: " + actualTitle);
-                Assert.assertEquals(actualTitle, Data.expectedHeaderLinkIndividualTourPix);
-            }
-            if (i == 5) {
-                actualTitle = blogPage.getAnyTitle();
-                System.out.println("Header Link Tour to Uktaine Txt' actual title is: " + actualTitle);
+                System.out.println("Header Link Individual trip to Uktaine Txt' actual title is: " + actualTitle);
                 Assert.assertEquals(actualTitle, Data.expectedHeaderLinkIndividualTourTxt);
             }
-            if (i == 6) {
+            if (i == 3) {
                 actualTitle = driver.getTitle();
                 System.out.println("Header Link Heart' actual title is: " + actualTitle);
                 Assert.assertEquals(actualTitle, Data.expectedHeaderLinkHeart);
                 driver.get(Data.HOW_WE_WORK_PAGE);
             }
-            if (i == 7) {
+            if (i == 4) {
                 actualTitle = blogPage.getAnyTitle();
                 System.out.println("Header Button Find People' actual title is: " + actualTitle);
                 Assert.assertEquals(actualTitle, Data.expectedHeaderButtonFindPeople);
             }
-            if (i == 8) {
+            if (i == 5) {
                 actualTitle = driver.findElement(Locators.SIGNIN_TITLE).getText();
                 System.out.println("Header Button Login' actual title is: " + actualTitle);
                 Assert.assertEquals(actualTitle, Data.expectedHeaderButtonLogin);
+                driver.get(Data.HOW_WE_WORK_PAGE);
             }
-            headerLinkGiftsPix = driver.findElement(Locators.HEADER_LINK_GIFTS_PIX);
-            headerLinkGiftsTxt = driver.findElement(Locators.HEADER_LINK_GIFTS_TXT);
-            headerLinkTourToUkrainePix = driver.findElement(Locators.HEADER_TOUR_TO_UKRAINE_PIX);
-            headerLinkTourToUkraineTxt = driver.findElement(Locators.HEADER_TOUR_TO_UKRAINE_TXT);
-            headerLinkIndividualTourPix = driver.findElement(Locators.HEADER_INDIVIDUAL_TOUR_PIX);
-            headerLinkIndividualTourTxt = driver.findElement(Locators.HEADER_INDIVIDUAL_TOUR_TXT);
             headerLinkHeart = driver.findElement(Locators.HEADER_LINK_HEART);
             headerButtonFindPeople = driver.findElement(Locators.HEADER_BUTTON_FIND_PEOPLE);
-            headerButtonLogin = driver.findElement(Locators.HEADER_BUTTON_LOGIN);
-            links = new ArrayList<WebElement>();
-            links.add(headerLinkGiftsPix);
-            links.add(headerLinkGiftsTxt);
-            links.add(headerLinkTourToUkrainePix);
-            links.add(headerLinkTourToUkraineTxt);
-            links.add(headerLinkIndividualTourPix);
-            links.add(headerLinkIndividualTourTxt);
+            headerButtonFindLogIn = driver.findElement(Locators.HEADER_BUTTON_LOGIN);
+            links = driver.findElements(Locators.HEADER_MENU_LINKS);
             links.add(headerLinkHeart);
             links.add(headerButtonFindPeople);
-            links.add(headerButtonLogin);
+            links.add(headerButtonFindLogIn);
         }
     }
 
-    @Test
-    public void checkHeaderMenuTabsVERSION2() {
-        System.out.println("--- Checking Header Menu Tabs ---");
-        driver.get(Data.HOW_WE_WORK_PAGE);
-        WebElement headerLinkGiftsPix = driver.findElement(Locators.HEADER_LINK_GIFTS_PIX);
-        WebElement headerLinkGiftsTxt = driver.findElement(Locators.HEADER_LINK_GIFTS_TXT);
-        WebElement headerLinkTourToUkrainePix = driver.findElement(Locators.HEADER_TOUR_TO_UKRAINE_PIX);
-        WebElement headerLinkTourToUkraineTxt = driver.findElement(Locators.HEADER_TOUR_TO_UKRAINE_TXT);
-        WebElement headerLinkIndividualTourPix = driver.findElement(Locators.HEADER_INDIVIDUAL_TOUR_PIX);
-        WebElement headerLinkIndividualTourTxt = driver.findElement(Locators.HEADER_INDIVIDUAL_TOUR_TXT);
-        WebElement headerLinkHeart = driver.findElement(Locators.HEADER_LINK_HEART);
-        WebElement headerButtonFindPeople = driver.findElement(Locators.HEADER_BUTTON_FIND_PEOPLE);
-        WebElement headerButtonLogin = driver.findElement(Locators.HEADER_BUTTON_LOGIN);
-        List<WebElement> links = new ArrayList<>(Arrays.asList(headerLinkGiftsPix, headerLinkGiftsTxt,
-                headerLinkTourToUkrainePix, headerLinkTourToUkraineTxt, headerLinkIndividualTourPix,
-                headerLinkIndividualTourTxt, headerLinkHeart, headerButtonFindPeople, headerButtonLogin));
-        System.out.println("HeaderMenuTabsVERSION2 list size is: " + links.size());
-        for (int i = 0; i < links.size(); i++) {
-            String info = links.get(i).getText();
-            System.out.println(i + 1 + ". " + info);
-//            ajaxClick(links.get(i));
-            links.get(i).click();
-            if (i == 0) {
-                actualTitle = driver.findElement(By.xpath("//div[@class='title']")).getText();
-                System.out.println("Header Link Gifts Pix' actual title is: " + actualTitle);
-                Assert.assertEquals(actualTitle, Data.expectedHeaderLinkGiftsPix);
-            }
-            if (i == 1) {
-                actualTitle = driver.findElement(By.xpath("//div[@class='title']")).getText();
-                System.out.println("Header Link Gifts Pix' actual title is: " + actualTitle);
-                Assert.assertEquals(actualTitle, Data.expectedHeaderLinkGiftsTxt);
-            }
-            if (i == 2) {
-                actualTitle = blogPage.getAnyTitle();
-                System.out.println("Header Link Tour to Uktaine Pix' actual title is: " + actualTitle);
-                Assert.assertEquals(actualTitle, Data.expectedHeaderLinkTourToUkrainePix);
-            }
-            if (i == 3) {
-                actualTitle = blogPage.getAnyTitle();
-                System.out.println("Header Link Tour to Uktaine Txt' actual title is: " + actualTitle);
-                Assert.assertEquals(actualTitle, Data.expectedHeaderLinkTourToUkraineTxt);
-            }
-            if (i == 4) {
-                actualTitle = blogPage.getAnyTitle();
-                System.out.println("Header Link Tour to Uktaine Pix' actual title is: " + actualTitle);
-                Assert.assertEquals(actualTitle, Data.expectedHeaderLinkIndividualTourPix);
-            }
-            if (i == 5) {
-                actualTitle = blogPage.getAnyTitle();
-                System.out.println("Header Link Tour to Uktaine Txt' actual title is: " + actualTitle);
-                Assert.assertEquals(actualTitle, Data.expectedHeaderLinkIndividualTourTxt);
-            }
-            if (i == 6) {
-                actualTitle = driver.getTitle();
-                System.out.println("Header Link Heart' actual title is: " + actualTitle);
-                Assert.assertEquals(actualTitle, Data.expectedHeaderLinkHeart);
-                driver.get(Data.HOW_WE_WORK_PAGE);
-            }
-            if (i == 7) {
-                actualTitle = blogPage.getAnyTitle();
-                System.out.println("Header Button Find People' actual title is: " + actualTitle);
-                Assert.assertEquals(actualTitle, Data.expectedHeaderButtonFindPeople);
-            }
-            if (i == 8) {
-                actualTitle = driver.findElement(Locators.SIGNIN_TITLE).getText();
-                System.out.println("Header Button Login' actual title is: " + actualTitle);
-                Assert.assertEquals(actualTitle, Data.expectedHeaderButtonLogin);
-            }
-            headerLinkGiftsPix = driver.findElement(Locators.HEADER_LINK_GIFTS_PIX);
-            headerLinkGiftsTxt = driver.findElement(Locators.HEADER_LINK_GIFTS_TXT);
-            headerLinkTourToUkrainePix = driver.findElement(Locators.HEADER_TOUR_TO_UKRAINE_PIX);
-            headerLinkTourToUkraineTxt = driver.findElement(Locators.HEADER_TOUR_TO_UKRAINE_TXT);
-            headerLinkIndividualTourPix = driver.findElement(Locators.HEADER_INDIVIDUAL_TOUR_PIX);
-            headerLinkIndividualTourTxt = driver.findElement(Locators.HEADER_INDIVIDUAL_TOUR_TXT);
-            headerLinkHeart = driver.findElement(Locators.HEADER_LINK_HEART);
-            headerButtonFindPeople = driver.findElement(Locators.HEADER_BUTTON_FIND_PEOPLE);
-            headerButtonLogin = driver.findElement(Locators.HEADER_BUTTON_LOGIN);
-            links = new ArrayList<WebElement>(Arrays.asList(headerLinkGiftsPix, headerLinkGiftsTxt,
-                    headerLinkTourToUkrainePix, headerLinkTourToUkraineTxt, headerLinkIndividualTourPix,
-                    headerLinkIndividualTourTxt, headerLinkHeart, headerButtonFindPeople, headerButtonLogin));
-        }
-    }
+
 
     @Test
     public void checkLeftMenuGroup(){

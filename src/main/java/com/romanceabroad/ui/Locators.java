@@ -56,13 +56,8 @@ public class Locators {
     public static final By USER_REGISTRATION_REGISTER_BUTTON = By.cssSelector("input.btn.btn-primary");
                         // MENU_GROUP_LINK_LOGIN
 
-    public static final By HEADER_LINK_GIFTS_PIX = By.cssSelector("div>a[href='https://romanceabroad.com/store/category-sweets']>i");
-    public static final By HEADER_LINK_GIFTS_TXT = By.cssSelector("div>a[href='https://romanceabroad.com/store/category-sweets'][data-item=txt]");
-    public static final By HEADER_TOUR_TO_UKRAINE_PIX = By.cssSelector("div>a[href='https://romanceabroad.com/store/sweets/20-tour_to_ukraine']>i");
-    public static final By HEADER_TOUR_TO_UKRAINE_TXT = By.cssSelector("div>a[href='https://romanceabroad.com/store/sweets/20-tour_to_ukraine'][data-item=txt]");
-    public static final By HEADER_INDIVIDUAL_TOUR_PIX = By.cssSelector("div>a[href='https://romanceabroad.com/store/sweets/5-vip_individual_tour_to_ukraine']>i");
-    public static final By HEADER_INDIVIDUAL_TOUR_TXT = By.cssSelector("div>a[href='https://romanceabroad.com/store/sweets/5-vip_individual_tour_to_ukraine'][data-item=txt]");
-    public static final By HEADER_LINK_HEART = By.cssSelector("div>a[href='https://romanceabroad.com/']");
+    public static final By HEADER_MENU_LINKS = By.xpath("//a[@data-item='txt']");
+    public static final By HEADER_LINK_HEART = By.xpath("//div[@class='logo-mobile-version top-menu-item']");
     public static final By HEADER_BUTTON_FIND_PEOPLE = By.cssSelector("#main_search_button_user_line");
     public static final By HEADER_BUTTON_LOGIN = By.cssSelector("#ajax_login_link");
 

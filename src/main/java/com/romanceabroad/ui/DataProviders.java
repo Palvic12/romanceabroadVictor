@@ -57,6 +57,7 @@ public class DataProviders {
                 {Data.email2, Data.password, false},
                 {Data.email4, Data.password, false},
                 {Data.email, Data.password,true}
+
         };
     }
 

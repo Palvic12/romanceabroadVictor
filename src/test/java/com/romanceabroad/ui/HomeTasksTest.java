@@ -1,13 +1,18 @@
 package com.romanceabroad.ui;
 
+import com.automation.remarks.testng.VideoListener;
+import com.automation.remarks.video.annotations.Video;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
+
+@Listeners(VideoListener.class)
 
 public class HomeTasksTest extends BaseUI { //extends com.romanceabroad.ui.BaseUI
 
@@ -29,6 +34,7 @@ public class HomeTasksTest extends BaseUI { //extends com.romanceabroad.ui.BaseU
     //Home Work 25
     //vvvvvvvv v v v v vvvvvvvv v v v v vvvvvvvv v v v v vvvvvvvv v v v v vvvvvvvv v v v v
 
+    @Video(name = "SignInNegative test")
     @Test(dataProvider = "SignInNegative", dataProviderClass = DataProviders.class)
     public void testSignInNegative(String email, String password, boolean requirement) {// HomeWork25}
         mainPage.clickLinkSignIn();

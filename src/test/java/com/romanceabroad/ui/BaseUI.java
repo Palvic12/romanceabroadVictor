@@ -5,6 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
@@ -70,7 +71,11 @@ public class BaseUI {
     }
 
     @AfterMethod
-    public void afterActions(){
+    public void afterActions(ITestResult testResult){
+        if (testResult.getStatus()== ITestResult.FAILURE) {
+            Reports.fail(driver, testResult.getName());
+        }
+        Reports.stop();
 //        driver.quit();
     }
 

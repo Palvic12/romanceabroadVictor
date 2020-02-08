@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class MainPage extends BaseActions{
     String currentUrlHowWeWork;
@@ -283,58 +284,89 @@ public class MainPage extends BaseActions{
     }
 
     public void clickJoinButton(){
+        Reports.log("Wait Join Button");
         // Click the Registration button
         wait.until(ExpectedConditions.elementToBeClickable(Locators.BUTTON_REGISTRATION));
+
+        Reports.log("Click Join Button");
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(Locators.BUTTON_REGISTRATION)));
         WebElement registrationButton = driver.findElement(Locators.BUTTON_REGISTRATION); // 'JOIN FOR FREE NOW' button
-//        registrationButton.click();
-        ajaxClick(registrationButton);
+        registrationButton.click();
+//        ajaxClick(registrationButton);
     }
 
     public void completeFirstPartOfRegistration(String email, String password){
+        Reports.log("Wait email text field");
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         //Enter email
         wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(Locators.TEXT_FIELD_EMAIL)));
+
+        Reports.log("Type email in text field: " + email);
         driver.findElement(Locators.TEXT_FIELD_EMAIL).sendKeys(email); // Email text field
 
         //Enter password
+        Reports.log("Wait password text field");
         wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(Locators.TEXT_FIELD_PASSWORD)));
+
+        Reports.log("Type password in text field: " + password);
         driver.findElement(Locators.TEXT_FIELD_PASSWORD).sendKeys(password); // Password text field
     }
 
     public void clickNextButton1(){
         // Click NEXT button
+        Reports.log("Wait Next Button");
         wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(Locators.BUTTON_NEXT_FIRST_PART)));
+
+        Reports.log("Click Next Button");
         driver.findElement(Locators.BUTTON_NEXT_FIRST_PART).click(); //NEXT button (after Password)
     }
 
     public void completeSecondPartOfRegistration(String username, String phone, String day,
                                                  String month, String year, String city, String location){
         // Enter username
+        Reports.log("Enter username: " + username);
         driver.findElement(Locators.TEXT_FIELD_USERNAME).sendKeys(username); // Username text field
 
         // Pick a month
+        Reports.log("Click list of months");
         driver.findElement(Locators.DROP_DOWN_MONTH).click(); // Month of birth
+
+        Reports.log("Select specific month: " + month);
         clickValueOfLists(Locators.MONTH_LIST, month);
 
         // Pick a date
         wait.until(ExpectedConditions.elementToBeClickable(Locators.DROP_DOWN_DAY));
+
+        Reports.log("Click list of days");
         driver.findElement(Locators.DROP_DOWN_DAY).click(); // Date of birth
+
+        Reports.log("Select specific day: " + day);
         clickValueOfLists(Locators.DAY_LIST, day);
 
 
 
         // Pick a year
+        Reports.log("Click list of years");
         driver.findElement(Locators.DROP_DOWN_YEAR).click();  // Year of birth
+
+        Reports.log("Select specific year: " + year);
         clickValueOfLists(Locators.YEAR_LIST, year);
 
         // Enter phone number
+        Reports.log("Enter phone number: " + phone);
         driver.findElement(Locators.TEXT_FIELD_PHONE).sendKeys(phone);
 
         // Click checkbox
+        Reports.log("Click confirmation checkbox");
         driver.findElement(Locators.CHECK_BOX_CONFIRMATION).click();
 
         // Enter location
+        Reports.log("Clean location autofilling form");
         driver.findElement(Locators.TEXT_FIELD_LOCATION).clear();
+
+        Reports.log("Type any of city: " + city);
         driver.findElement(Locators.TEXT_FIELD_LOCATION).sendKeys(city);
+
         wait.until(ExpectedConditions.elementToBeClickable(Locators.LOCATION_LIST));
         clickValueOfLists(Locators.LOCATION_LIST, location);
 
